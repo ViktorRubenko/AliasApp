@@ -52,6 +52,16 @@ class MainViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if needConfigureLayouts {
@@ -104,7 +114,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func didTapNewGameButton() {
-        let vc = RulesViewController()
+        let vc = TeamsViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
