@@ -1,5 +1,5 @@
 //
-//  ThemesViewController.swift
+//  NextRoundViewController.swift
 //  Alias
 //
 //  Created by Victor Rubenko on 01.05.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThemesViewController: UIViewController {
+class NextRoundViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
