@@ -13,11 +13,16 @@
 		E3B4D2FF281EB2A10042AF06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3B4D2FD281EB2A10042AF06 /* LaunchScreen.storyboard */; };
 		E3B4D308281EBB2A0042AF06 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D307281EBB2A0042AF06 /* MainViewController.swift */; };
 		E3B4D30A281EBCC40042AF06 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D309281EBCC40042AF06 /* RulesViewController.swift */; };
-		E3B4D30C281EBCEE0042AF06 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D30B281EBCEE0042AF06 /* ThemesViewController.swift */; };
-		E3B4D30E281EBD4A0042AF06 /* GuessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D30D281EBD4A0042AF06 /* GuessViewController.swift */; };
+		E3B4D30C281EBCEE0042AF06 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D30B281EBCEE0042AF06 /* CategoriesViewController.swift */; };
+		E3B4D30E281EBD4A0042AF06 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D30D281EBD4A0042AF06 /* GameViewController.swift */; };
 		E3B4D310281EBE190042AF06 /* JokeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D30F281EBE190042AF06 /* JokeService.swift */; };
 		E3B4D313281EBEAE0042AF06 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D312281EBEAE0042AF06 /* GameService.swift */; };
 		E3B4D338281F1AD80042AF06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D337281F1AD80042AF06 /* Constants.swift */; };
+		E3B4D33C281F229E0042AF06 /* TeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D33B281F229E0042AF06 /* TeamsViewController.swift */; };
+		E3B4D33E281F22B40042AF06 /* GameSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D33D281F22B40042AF06 /* GameSettingsViewController.swift */; };
+		E3B4D340281F22CA0042AF06 /* NextRoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D33F281F22CA0042AF06 /* NextRoundViewController.swift */; };
+		E3B4D342281F23000042AF06 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D341281F23000042AF06 /* ResultsViewController.swift */; };
+		E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D343281F23060042AF06 /* WinnerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,11 +34,16 @@
 		E3B4D300281EB2A10042AF06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3B4D307281EBB2A0042AF06 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E3B4D309281EBCC40042AF06 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
-		E3B4D30B281EBCEE0042AF06 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
-		E3B4D30D281EBD4A0042AF06 /* GuessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessViewController.swift; sourceTree = "<group>"; };
+		E3B4D30B281EBCEE0042AF06 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		E3B4D30D281EBD4A0042AF06 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E3B4D30F281EBE190042AF06 /* JokeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeService.swift; sourceTree = "<group>"; };
 		E3B4D312281EBEAE0042AF06 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		E3B4D337281F1AD80042AF06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E3B4D33B281F229E0042AF06 /* TeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
+		E3B4D33D281F22B40042AF06 /* GameSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsViewController.swift; sourceTree = "<group>"; };
+		E3B4D33F281F22CA0042AF06 /* NextRoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextRoundViewController.swift; sourceTree = "<group>"; };
+		E3B4D341281F23000042AF06 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		E3B4D343281F23060042AF06 /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +90,13 @@
 			children = (
 				E3B4D307281EBB2A0042AF06 /* MainViewController.swift */,
 				E3B4D309281EBCC40042AF06 /* RulesViewController.swift */,
-				E3B4D30B281EBCEE0042AF06 /* ThemesViewController.swift */,
-				E3B4D30D281EBD4A0042AF06 /* GuessViewController.swift */,
+				E3B4D30B281EBCEE0042AF06 /* CategoriesViewController.swift */,
+				E3B4D30D281EBD4A0042AF06 /* GameViewController.swift */,
+				E3B4D33B281F229E0042AF06 /* TeamsViewController.swift */,
+				E3B4D33D281F22B40042AF06 /* GameSettingsViewController.swift */,
+				E3B4D33F281F22CA0042AF06 /* NextRoundViewController.swift */,
+				E3B4D341281F23000042AF06 /* ResultsViewController.swift */,
+				E3B4D343281F23060042AF06 /* WinnerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -208,13 +223,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3B4D30E281EBD4A0042AF06 /* GuessViewController.swift in Sources */,
+				E3B4D30E281EBD4A0042AF06 /* GameViewController.swift in Sources */,
 				E3B4D308281EBB2A0042AF06 /* MainViewController.swift in Sources */,
+				E3B4D340281F22CA0042AF06 /* NextRoundViewController.swift in Sources */,
 				E3B4D2F3281EB29E0042AF06 /* AppDelegate.swift in Sources */,
+				E3B4D33C281F229E0042AF06 /* TeamsViewController.swift in Sources */,
 				E3B4D30A281EBCC40042AF06 /* RulesViewController.swift in Sources */,
 				E3B4D310281EBE190042AF06 /* JokeService.swift in Sources */,
 				E3B4D2F5281EB29E0042AF06 /* SceneDelegate.swift in Sources */,
-				E3B4D30C281EBCEE0042AF06 /* ThemesViewController.swift in Sources */,
+				E3B4D30C281EBCEE0042AF06 /* CategoriesViewController.swift in Sources */,
+				E3B4D33E281F22B40042AF06 /* GameSettingsViewController.swift in Sources */,
+				E3B4D342281F23000042AF06 /* ResultsViewController.swift in Sources */,
+				E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */,
 				E3B4D313281EBEAE0042AF06 /* GameService.swift in Sources */,
 				E3B4D338281F1AD80042AF06 /* Constants.swift in Sources */,
 			);

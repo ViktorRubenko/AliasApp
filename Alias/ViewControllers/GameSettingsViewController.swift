@@ -1,5 +1,5 @@
 //
-//  GuessViewController.swift
+//  GameSettingsViewController.swift
 //  Alias
 //
 //  Created by Victor Rubenko on 01.05.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GuessViewController: UIViewController {
+class GameSettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
