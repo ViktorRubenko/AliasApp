@@ -50,6 +50,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        startAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,6 +112,12 @@ class MainViewController: UIViewController {
             newGameButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             newGameButton.bottomAnchor.constraint(equalTo: buttonsContainer.centerYAnchor, constant: -5),
         ])
+    }
+    
+    private func startAnimation() {
+        UIView.animate(withDuration: 2, delay: 0, options: [.autoreverse, .repeat]) {
+            self.logoImage.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }
     }
     
     @objc private func didTapNewGameButton() {
