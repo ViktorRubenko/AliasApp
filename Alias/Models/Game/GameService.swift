@@ -22,4 +22,5 @@ protocol GameServiceProtocol {
 protocol GameServiceDelegate {
     func handleAction(gameService: GameServiceProtocol, action: String)
     func gameDidEnded(gameService: GameServiceProtocol, points: Int)
+    func newGameStarted(gameService: GameServiceProtocol)
 }
