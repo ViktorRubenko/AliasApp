@@ -7,13 +7,21 @@
 
 import Foundation
 
+struct TeamModel {
+    let name: String
+}
+
 protocol GameServiceProtocol {
-    var points: Int { get }
     var currentRound: Int { get }
-    var maxRounds: Int { get }
-    var results: [String: Bool] { get }
-    func nextWord() -> String
-    func randomAction() -> String
+    var roundPoints: Int { get }
+    var totalRounds: Int { get }
+    var roundResults: [String: Bool] { get }
+    var teams: [TeamModel] { get }
+    
+    func addTeam(name: String)
+    func deleteTeam(team: TeamModel)
+    
+    func start()
     func guessed()
     func skip()
     func reset()
@@ -21,6 +29,6 @@ protocol GameServiceProtocol {
 
 protocol GameServiceDelegate {
     func handleAction(gameService: GameServiceProtocol, action: String)
-    func gameDidEnded(gameService: GameServiceProtocol, points: Int)
-    func newGameStarted(gameService: GameServiceProtocol)
+    func handleWord(gameService: GameServiceProtocol, action: String)
+    func gameDidEnded(gameService: GameServiceProtocol, roundPoints: Int, roundResults: [String: Bool])
 }
