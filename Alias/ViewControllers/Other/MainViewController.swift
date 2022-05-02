@@ -136,7 +136,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func didTapNewGameButton() {
-        let vc = TeamsViewController(componentsFactory: self.componentsFactory)
+        let vc = TeamsViewController(gameService: GameServiceForTest.shared, componentsFactory: self.componentsFactory)
         navigationController?.pushViewController(vc, animated: true)
     }
     

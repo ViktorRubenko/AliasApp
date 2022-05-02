@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GuessViewController: UIViewController {
+class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
