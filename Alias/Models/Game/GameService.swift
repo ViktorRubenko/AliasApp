@@ -19,7 +19,8 @@ protocol GameServiceProtocol {
     var teams: [TeamModel] { get }
     
     func addTeam(name: String)
-    func deleteTeam(team: TeamModel)
+    func deleteTeam(at: Int)
+    func setRounds(_ rounds: Int)
     
     func start()
     func guessed()
