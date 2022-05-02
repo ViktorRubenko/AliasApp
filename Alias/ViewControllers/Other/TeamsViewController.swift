@@ -9,7 +9,6 @@ import UIKit
 
 class TeamsViewController: UIViewController {
     
-    var teams = [TeamModel(name: "team1"), TeamModel(name: "team2")]
     var gameService: GameServiceProtocol!
     
     private lazy var tableView: UITableView = {
@@ -34,8 +33,9 @@ class TeamsViewController: UIViewController {
     
     private var componentsFactory: ComponentsBaseFactory!
     
-    init(componentsFactory: ComponentsBaseFactory) {
+    init(gameService: GameServiceProtocol, componentsFactory: ComponentsBaseFactory) {
         self.componentsFactory = componentsFactory
+        self.gameService = gameService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -85,10 +85,10 @@ class TeamsViewController: UIViewController {
             guard let text = alert.textFields?.first?.text, !text.isEmpty else {
                 return
             }
-            self.teams.append(TeamModel(name: text))
+            self.gameService.addTeam(name: text)
             self.tableView.performBatchUpdates {
                 self.tableView.insertRows(
-                    at: [IndexPath(row: self.teams.count - 1, section: 0)],
+                    at: [IndexPath(row: self.gameService.teams.count - 1, section: 0)],
                     with: .fade)
             }
         }))
@@ -104,24 +104,24 @@ class TeamsViewController: UIViewController {
 
 extension TeamsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        teams.count
+        gameService.teams.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         var config = UIListContentConfiguration.cell()
-        config.text = teams[indexPath.row].name
+        config.text = gameService.teams[indexPath.row].name
         cell.contentConfiguration = config
         return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        teams.count > 2
+        gameService.teams.count > 2
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            teams.remove(at: indexPath.row)
+            gameService.deleteTeam(at: indexPath.row)
             tableView.performBatchUpdates {
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             }

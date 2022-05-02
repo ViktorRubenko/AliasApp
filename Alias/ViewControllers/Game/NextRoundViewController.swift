@@ -8,22 +8,151 @@
 import UIKit
 
 class NextRoundViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    private let gameService: GameServiceProtocol!
+    private var componentsFactory: ComponentsBaseFactory!
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    private var contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    private lazy var roundLabel: UILabel = {
+        let label = componentsFactory.roundLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private lazy var nextRoundTeamLabel: UILabel = {
+        let label = componentsFactory.nextRoundTeamLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private lazy var bottomButton: UIButton = {
+        let button = componentsFactory.bottomButton()
+        button.setTitle("Старт!", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
+        return button
+    }()
+    private let bottomButtonContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = Constants.Colors.bottomButtonColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    private let teamsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    private var teamsStackViewHeightConstraint: NSLayoutConstraint!
+    
+    init(gameService: GameServiceProtocol, componentsFactory: ComponentsBaseFactory) {
+        self.gameService = gameService
+        self.componentsFactory = componentsFactory
+        super.init(nibName: nil, bundle: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        setupNavBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        roundLabel.text = "Раунд \(gameService.currentRound) / \(gameService.totalRounds)"
+        nextRoundTeamLabel.text = gameService.currentTeam.name
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        teamsStackViewHeightConstraint.constant = CGFloat(teamsStackView.subviews.count * 44)
+        
+        contentView.layoutIfNeeded()
+        scrollView.contentSize = contentView.bounds.size
+    }
+    
+    private func setupViews() {
+        view.backgroundColor = Constants.Colors.mainBackgroundColor
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(roundLabel)
+        contentView.addSubview(nextRoundTeamLabel)
+        contentView.addSubview(teamsStackView)
+        
+        gameService.roundResults.forEach {
+            let innerStackView = UIStackView()
+            innerStackView.axis = .horizontal
+            innerStackView.distribution = .fillProportionally
+            let teamLabel = componentsFactory.roundTeamListLabel()
+            let teamScoreLabel = componentsFactory.roundTeamScoreListLabel()
+            teamLabel.text = "\($0):"
+            teamScoreLabel.text = "\($1)"
+            innerStackView.addArrangedSubview(teamLabel)
+            innerStackView.addArrangedSubview(teamScoreLabel)
+            self.teamsStackView.addArrangedSubview(innerStackView)
+        }
+        
+        view.addSubview(bottomButtonContainer)
+        bottomButtonContainer.addSubview(bottomButton)
+        
+        NSLayoutConstraint.activate([
+            bottomButtonContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomButtonContainer.leadingAnchor.constraint(equalTo: bottomButton.leadingAnchor),
+            bottomButtonContainer.trailingAnchor.constraint(equalTo: bottomButton.trailingAnchor),
+            bottomButtonContainer.topAnchor.constraint(equalTo: bottomButton.topAnchor),
+            
+            bottomButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomButton.heightAnchor.constraint(equalToConstant: Constants.Sizes.BottomButton.height),
+            
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomButtonContainer.topAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: teamsStackView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            
+            roundLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100),
+            roundLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            roundLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            teamsStackView.topAnchor.constraint(equalTo: roundLabel.bottomAnchor, constant: 150),
+            teamsStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7),
+            teamsStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            nextRoundTeamLabel.topAnchor.constraint(equalTo: roundLabel.bottomAnchor, constant: 10),
+            nextRoundTeamLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            nextRoundTeamLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        ])
+        
+        teamsStackViewHeightConstraint = teamsStackView.heightAnchor.constraint(
+            equalToConstant: CGFloat(teamsStackView.subviews.count * 44))
+    }
+    
+    private func setupNavBar() {
+        title = "Раунд"
+    }
+    
+    @objc private func didTapBottomButton() {
+        let vc = GameViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
