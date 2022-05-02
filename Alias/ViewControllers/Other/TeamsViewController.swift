@@ -72,10 +72,6 @@ class TeamsViewController: UIViewController {
     private func setupNavBar() {
         title = "Команды"
         
-        let backBarItem = UIBarButtonItem()
-        backBarItem.title = "Назад"
-        navigationItem.backBarButtonItem = backBarItem
-        
         let addBarItem = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(didTapAddBarItem))
         navigationItem.rightBarButtonItem = addBarItem
     }

@@ -52,11 +52,10 @@ class MainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupNavBar()
         startAnimation()
     }
     
@@ -119,6 +118,12 @@ class MainViewController: UIViewController {
             newGameButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             newGameButton.bottomAnchor.constraint(equalTo: buttonsContainer.centerYAnchor, constant: -5),
         ])
+    }
+    
+    private func setupNavBar() {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Назад"
+        navigationItem.backBarButtonItem = backItem
     }
     
     private func startAnimation() {
