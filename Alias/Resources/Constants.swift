@@ -17,6 +17,8 @@ enum Constants {
         static let secondaryTextColor = UIColor(named: "secondaryTextColor")
         static let bottomButtonColor = UIColor(named: "bottomButtonColor")
         static let bottomBackgroundColor = UIColor(named: "bottomBackgroundColor")
+        static let redColor = UIColor(named: "redColor")
+        static let greenColor = UIColor(named: "greenColor")
     }
     
     enum Sizes {
