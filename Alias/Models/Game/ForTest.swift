@@ -18,7 +18,7 @@ final class GameServiceForTest: GameServiceProtocol {
     var teams: [TeamModel] = [TeamModel(name: "a", score: 0), TeamModel(name: "b", score: 0)]
     var currentTeam: TeamModel = TeamModel(name: "a", score: 0)
     var categories: [CategoryModel] = [CategoryModel(name: "cat 1", words: ["a", "b"]), CategoryModel(name: "cat 2", words: ["c", "d"])]
-    var totalSeconds: Int = 30
+    var totalTimerSeconds: Int = 30
     
     private init() {}
     
