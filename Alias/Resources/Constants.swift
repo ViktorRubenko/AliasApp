@@ -18,4 +18,11 @@ enum Constants {
         static let bottomButtonColor = UIColor(named: "bottomButtonColor")
         static let bottomBackgroundColor = UIColor(named: "bottomBackgroundColor")
     }
+    
+    enum Sizes {
+        enum BottomButton {
+            static let height = 44.0
+            static let textSize = 24.0
+        }
+    }
 }
