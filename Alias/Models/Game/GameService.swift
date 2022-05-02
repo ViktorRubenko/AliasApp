@@ -24,6 +24,7 @@ protocol GameServiceProtocol {
     var teams: [TeamModel] { get }
     var currentTeam: TeamModel { get }
     var categories: [Category] { get }
+    var maxTimerSeconds: Int { get }
     
     func addTeam(name: String)
     func deleteTeam(at: Int)
@@ -40,4 +41,5 @@ protocol GameServiceDelegate {
     func handleAction(gameService: GameServiceProtocol, action: String)
     func handleWord(gameService: GameServiceProtocol, action: String)
     func gameDidEnded(gameService: GameServiceProtocol, roundPoints: Int, roundResults: [String: Bool])
+    func timerDidUpdated(gameService: GameServiceProtocol, seconds: Int)
 }
