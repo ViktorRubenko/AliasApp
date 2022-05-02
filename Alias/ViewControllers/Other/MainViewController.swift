@@ -56,17 +56,18 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupNavBar()
-        startAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        startAnimation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        logoImage.layer.removeAllAnimations()
     }
     
     override func viewDidLayoutSubviews() {
@@ -129,6 +130,8 @@ class MainViewController: UIViewController {
     private func startAnimation() {
         UIView.animate(withDuration: 2, delay: 0, options: [.autoreverse, .repeat]) {
             self.logoImage.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+        } completion: { _ in
+            self.logoImage.transform = .identity
         }
     }
     
