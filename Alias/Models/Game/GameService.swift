@@ -11,6 +11,11 @@ struct TeamModel {
     let name: String
 }
 
+struct CategoryModel {
+    let name: String
+    let words: [String]
+}
+
 protocol GameServiceProtocol {
     var currentRound: Int { get }
     var roundPoints: Int { get }
@@ -18,10 +23,12 @@ protocol GameServiceProtocol {
     var roundResults: [String: Bool] { get }
     var teams: [TeamModel] { get }
     var currentTeam: TeamModel { get }
+    var categories: [Category] { get }
     
     func addTeam(name: String)
     func deleteTeam(at: Int)
     func setRounds(_ rounds: Int)
+    func selectCategory(_ category: CategoryModel)
     
     func start()
     func guessed()
