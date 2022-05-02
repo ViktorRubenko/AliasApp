@@ -17,6 +17,7 @@ protocol GameServiceProtocol {
     var totalRounds: Int { get }
     var roundResults: [String: Bool] { get }
     var teams: [TeamModel] { get }
+    var currentTeam: TeamModel { get }
     
     func addTeam(name: String)
     func deleteTeam(at: Int)
