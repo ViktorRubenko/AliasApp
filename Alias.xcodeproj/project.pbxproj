@@ -25,6 +25,7 @@
 		E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D343281F23060042AF06 /* WinnerViewController.swift */; };
 		E3B4D347281F332B0042AF06 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D346281F332B0042AF06 /* NavigationController.swift */; };
 		E3B4D34E281F54050042AF06 /* ComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */; };
+		E3B4D352282073AF0042AF06 /* ForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D351282073AF0042AF06 /* ForTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		E3B4D343281F23060042AF06 /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		E3B4D346281F332B0042AF06 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFactory.swift; sourceTree = "<group>"; };
+		E3B4D351282073AF0042AF06 /* ForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				E3B4D312281EBEAE0042AF06 /* GameService.swift */,
+				E3B4D351282073AF0042AF06 /* ForTest.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				E3B4D342281F23000042AF06 /* ResultsViewController.swift in Sources */,
 				E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */,
 				E3B4D313281EBEAE0042AF06 /* GameService.swift in Sources */,
+				E3B4D352282073AF0042AF06 /* ForTest.swift in Sources */,
 				E3B4D338281F1AD80042AF06 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

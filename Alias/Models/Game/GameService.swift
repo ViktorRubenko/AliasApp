@@ -9,6 +9,7 @@ import Foundation
 
 struct TeamModel {
     let name: String
+    var score: Int
 }
 
 struct CategoryModel {
@@ -19,25 +20,30 @@ struct CategoryModel {
 protocol GameServiceProtocol {
     var currentRound: Int { get }
     var roundPoints: Int { get }
+    var skippedWords: Int { get }
     var totalRounds: Int { get }
     var roundResults: [String: Bool] { get }
     var teams: [TeamModel] { get }
     var currentTeam: TeamModel { get }
-    var categories: [Category] { get }
+    var categories: [CategoryModel] { get }
+    var totalSeconds: Int { get }
     
     func addTeam(name: String)
     func deleteTeam(at: Int)
     func setRounds(_ rounds: Int)
-    func selectCategory(_ category: CategoryModel)
+    func setSeconds(_ seconds: Int)
+    func selectCategory(_ index: Int)
     
-    func start()
-    func guessed()
-    func skip()
-    func reset()
+    func startNewGame()
+    func startRound()
+    func guessedWord()
+    func skipWord()
+    func resetRound()
 }
 
 protocol GameServiceDelegate {
     func handleAction(gameService: GameServiceProtocol, action: String)
     func handleWord(gameService: GameServiceProtocol, action: String)
-    func gameDidEnded(gameService: GameServiceProtocol, roundPoints: Int, roundResults: [String: Bool])
+    func timeDidChange(gameService: GameServiceProtocol, secondsLeft: String)
+    func roundDidEnded(gameService: GameServiceProtocol, roundPoints: Int, roundResults: [String: Bool])
 }
