@@ -17,6 +17,8 @@ class NavigationController: UINavigationController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
         appearance.backgroundColor = Constants.Colors.navBarColor
+        appearance.titleTextAttributes = [.foregroundColor: Constants.Colors.secondaryTextColor ?? .white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: Constants.Colors.textColor ?? .black]
         
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance

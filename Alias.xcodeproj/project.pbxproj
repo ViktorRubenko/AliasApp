@@ -24,6 +24,7 @@
 		E3B4D342281F23000042AF06 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D341281F23000042AF06 /* ResultsViewController.swift */; };
 		E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D343281F23060042AF06 /* WinnerViewController.swift */; };
 		E3B4D347281F332B0042AF06 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D346281F332B0042AF06 /* NavigationController.swift */; };
+		E3B4D34E281F54050042AF06 /* ComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		E3B4D341281F23000042AF06 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		E3B4D343281F23060042AF06 /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		E3B4D346281F332B0042AF06 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				E3B4D31C281EC5A70042AF06 /* Application */,
+				E3B4D34F281F54090042AF06 /* Helper */,
 				E3B4D311281EBE1C0042AF06 /* Models */,
 				E3B4D306281EBB120042AF06 /* ViewControllers */,
 				E3B4D31D281EC5B10042AF06 /* Views */,
@@ -180,6 +183,22 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		E3B4D34F281F54090042AF06 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E3B4D350281F54100042AF06 /* Factory */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		E3B4D350281F54100042AF06 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -250,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3B4D34E281F54050042AF06 /* ComponentsFactory.swift in Sources */,
 				E3B4D30E281EBD4A0042AF06 /* GameViewController.swift in Sources */,
 				E3B4D308281EBB2A0042AF06 /* MainViewController.swift in Sources */,
 				E3B4D340281F22CA0042AF06 /* NextRoundViewController.swift in Sources */,

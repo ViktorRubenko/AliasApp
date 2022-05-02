@@ -10,22 +10,16 @@ import UIKit
 class MainViewController: UIViewController {
 
     private lazy var newGameButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = componentsFactory.mainMenuButton()
         button.setTitle("Новая игра", for: .normal)
-        button.setTitleColor(Constants.Colors.secondaryTextColor, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 25, weight: .semibold)
-        button.backgroundColor = Constants.Colors.secondaryBackgrounColor
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapNewGameButton), for: .touchUpInside)
         return button
     }()
     
     private lazy var rulesButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = componentsFactory.mainMenuButton()
         button.setTitle("Правила", for: .normal)
-        button.setTitleColor(Constants.Colors.secondaryTextColor, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 25, weight: .semibold)
-        button.backgroundColor = Constants.Colors.secondaryBackgrounColor
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapRulesButton), for: .touchUpInside)
         return button
@@ -45,7 +39,20 @@ class MainViewController: UIViewController {
         return iv
     }()
     
+    private var componentsFactory: ComponentsBaseFactory!
+    
     private var needConfigureLayouts = true
+    
+    init(componentsFactory: ComponentsBaseFactory) {
+        self.componentsFactory = componentsFactory
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,12 +123,12 @@ class MainViewController: UIViewController {
     
     private func startAnimation() {
         UIView.animate(withDuration: 2, delay: 0, options: [.autoreverse, .repeat]) {
-            self.logoImage.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+            self.logoImage.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
         }
     }
     
     @objc private func didTapNewGameButton() {
-        let vc = TeamsViewController()
+        let vc = TeamsViewController(componentsFactory: self.componentsFactory)
         navigationController?.pushViewController(vc, animated: true)
     }
     
