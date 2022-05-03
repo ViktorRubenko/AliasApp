@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F88ED4328211EE80058EAD9 /* GameBrain_alt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88ED4228211EE80058EAD9 /* GameBrain_alt.swift */; };
+		6F88ED47282165760058EAD9 /* GameBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88ED46282165760058EAD9 /* GameBrain.swift */; };
 		E3B4D2F3281EB29E0042AF06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D2F2281EB29E0042AF06 /* AppDelegate.swift */; };
 		E3B4D2F5281EB29E0042AF06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D2F4281EB29E0042AF06 /* SceneDelegate.swift */; };
 		E3B4D2FC281EB2A10042AF06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B4D2FB281EB2A10042AF06 /* Assets.xcassets */; };
@@ -25,10 +27,11 @@
 		E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D343281F23060042AF06 /* WinnerViewController.swift */; };
 		E3B4D347281F332B0042AF06 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D346281F332B0042AF06 /* NavigationController.swift */; };
 		E3B4D34E281F54050042AF06 /* ComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */; };
-		E3B4D352282073AF0042AF06 /* ForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D351282073AF0042AF06 /* ForTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F88ED4228211EE80058EAD9 /* GameBrain_alt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBrain_alt.swift; sourceTree = "<group>"; };
+		6F88ED46282165760058EAD9 /* GameBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBrain.swift; sourceTree = "<group>"; };
 		E3B4D2EF281EB29E0042AF06 /* Alias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B4D2F2281EB29E0042AF06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3B4D2F4281EB29E0042AF06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +52,6 @@
 		E3B4D343281F23060042AF06 /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		E3B4D346281F332B0042AF06 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFactory.swift; sourceTree = "<group>"; };
-		E3B4D351282073AF0042AF06 /* ForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				E3B4D312281EBEAE0042AF06 /* GameService.swift */,
-				E3B4D351282073AF0042AF06 /* ForTest.swift */,
+				6F88ED4228211EE80058EAD9 /* GameBrain_alt.swift */,
+				6F88ED46282165760058EAD9 /* GameBrain.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3B4D34E281F54050042AF06 /* ComponentsFactory.swift in Sources */,
+				6F88ED47282165760058EAD9 /* GameBrain.swift in Sources */,
 				E3B4D30E281EBD4A0042AF06 /* GameViewController.swift in Sources */,
 				E3B4D308281EBB2A0042AF06 /* MainViewController.swift in Sources */,
 				E3B4D340281F22CA0042AF06 /* NextRoundViewController.swift in Sources */,
@@ -287,7 +291,7 @@
 				E3B4D342281F23000042AF06 /* ResultsViewController.swift in Sources */,
 				E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */,
 				E3B4D313281EBEAE0042AF06 /* GameService.swift in Sources */,
-				E3B4D352282073AF0042AF06 /* ForTest.swift in Sources */,
+				6F88ED4328211EE80058EAD9 /* GameBrain_alt.swift in Sources */,
 				E3B4D338281F1AD80042AF06 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
