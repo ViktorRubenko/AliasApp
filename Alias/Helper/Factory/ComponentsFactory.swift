@@ -17,7 +17,7 @@ protocol ComponentsBaseFactory {
     func nextRoundTeamLabel() -> UILabel
 }
 
-struct ComponentFactory: ComponentsBaseFactory {
+struct ComponentsFactory: ComponentsBaseFactory {
     func roundLabel() -> UILabel {
         let label = UILabel()
         label.textColor = Constants.Colors.textColor

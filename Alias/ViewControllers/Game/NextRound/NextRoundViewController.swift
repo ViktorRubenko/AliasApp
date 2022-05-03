@@ -7,8 +7,8 @@
 
 import UIKit
 
-class NextRoundViewController: UIViewController {
-    
+class NextRoundViewController: UIViewController, NextRoundBaseCoordinated {
+    weak var coordinator: NextRoundBaseCoordinator?
     private let gameService: GameServiceProtocol!
     private var componentsFactory: ComponentsBaseFactory!
     private lazy var scrollView: UIScrollView = {
@@ -53,7 +53,8 @@ class NextRoundViewController: UIViewController {
     }()
     private var teamsStackViewHeightConstraint: NSLayoutConstraint!
     
-    init(gameService: GameServiceProtocol, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: NextRoundBaseCoordinator, gameService: GameServiceProtocol, componentsFactory: ComponentsBaseFactory) {
+        self.coordinator = coordinator
         self.gameService = gameService
         self.componentsFactory = componentsFactory
         super.init(nibName: nil, bundle: nil)
@@ -152,7 +153,6 @@ class NextRoundViewController: UIViewController {
     }
     
     @objc private func didTapBottomButton() {
-        let vc = GameViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        coordinator?.goToGame()
     }
 }

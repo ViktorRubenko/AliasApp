@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  MenuViewController.swift
 //  Alias
 //
 //  Created by Victor Rubenko on 01.05.2022.
@@ -7,7 +7,9 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MenuViewController: UIViewController, MenuBaseCoordinated {
+    
+    weak var coordinator: MenuBaseCoordinator?
 
     private lazy var newGameButton: UIButton = {
         let button = componentsFactory.mainMenuButton()
@@ -43,7 +45,8 @@ class MainViewController: UIViewController {
     
     private var needConfigureLayouts = true
     
-    init(componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: MenuBaseCoordinator, componentsFactory: ComponentsBaseFactory) {
+        self.coordinator = coordinator
         self.componentsFactory = componentsFactory
         super.init(nibName: nil, bundle: nil)
     }
@@ -136,13 +139,11 @@ class MainViewController: UIViewController {
     }
     
     @objc private func didTapNewGameButton() {
-        let vc = TeamsViewController(gameService: GameBrain.shared, componentsFactory: self.componentsFactory)
-        navigationController?.pushViewController(vc, animated: true)
+        coordinator?.goToTeams()
     }
     
     @objc private func didTapRulesButton() {
-        let vc = RulesViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        coordinator?.goToRules()
     }
     
 }
