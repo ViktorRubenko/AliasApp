@@ -12,6 +12,7 @@
 		A5101DF12821783500EDCB5F /* RuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5101DF02821783500EDCB5F /* RuleTableViewCell.swift */; };
 		E3A05A1D2821C11600855DFD /* AliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A1C2821C11600855DFD /* AliasTests.swift */; };
 		E3A05A272821C94800855DFD /* CategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A262821C94800855DFD /* CategoriesData.swift */; };
+		E3A05A292821D93C00855DFD /* ActionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A282821D93C00855DFD /* ActionsData.swift */; };
 		E3B4D2F3281EB29E0042AF06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D2F2281EB29E0042AF06 /* AppDelegate.swift */; };
 		E3B4D2F5281EB29E0042AF06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D2F4281EB29E0042AF06 /* SceneDelegate.swift */; };
 		E3B4D2FC281EB2A10042AF06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B4D2FB281EB2A10042AF06 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		E3A05A1A2821C11600855DFD /* AliasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AliasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A05A1C2821C11600855DFD /* AliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasTests.swift; sourceTree = "<group>"; };
 		E3A05A262821C94800855DFD /* CategoriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesData.swift; sourceTree = "<group>"; };
+		E3A05A282821D93C00855DFD /* ActionsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsData.swift; sourceTree = "<group>"; };
 		E3B4D2EF281EB29E0042AF06 /* Alias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B4D2F2281EB29E0042AF06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3B4D2F4281EB29E0042AF06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,15 @@
 				A5101DF02821783500EDCB5F /* RuleTableViewCell.swift */,
 			);
 			path = Rules;
+			sourceTree = "<group>";
+		};
+		E3A05A2A2821D94000855DFD /* GameResources */ = {
+			isa = PBXGroup;
+			children = (
+				E3A05A262821C94800855DFD /* CategoriesData.swift */,
+				E3A05A282821D93C00855DFD /* ActionsData.swift */,
+			);
+			path = GameResources;
 			sourceTree = "<group>";
 		};
 		E3B4D2E6281EB29E0042AF06 = {
@@ -195,7 +206,7 @@
 				E3B4D2FB281EB2A10042AF06 /* Assets.xcassets */,
 				E3B4D300281EB2A10042AF06 /* Info.plist */,
 				E3B4D337281F1AD80042AF06 /* Constants.swift */,
-				E3A05A262821C94800855DFD /* CategoriesData.swift */,
+				E3A05A2A2821D94000855DFD /* GameResources */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -374,6 +385,7 @@
 				E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */,
 				E3B4D313281EBEAE0042AF06 /* GameService.swift in Sources */,
 				6F88ED4328211EE80058EAD9 /* (null) in Sources */,
+				E3A05A292821D93C00855DFD /* ActionsData.swift in Sources */,
 				E3B4D338281F1AD80042AF06 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
