@@ -33,6 +33,7 @@ class GameBrain: GameServiceProtocol {
     private var currentCategory: CategoryModel? = nil
     private var usedWords: [[String]] = []
     private var shuffledWords: [String] = []
+    weak private var timer: Timer?
     
     private init() {}
     
@@ -81,7 +82,7 @@ class GameBrain: GameServiceProtocol {
         skippedWords = 0
         secondsRemaining = totalTimerSeconds
         
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] (timer) in
             guard let self = self else {timer.invalidate(); return}
             self.secondsRemaining -= 1
             self.delegate?.timerDidUpdate(gameService: self, seconds: self.secondsRemaining)
@@ -114,12 +115,14 @@ class GameBrain: GameServiceProtocol {
     
     func resetRound() {
         roundResults = [:]
+        timer?.invalidate()
     }
     
     func endGame() {
         teams.removeAll()
         roundResults.removeAll()
         usedWords.removeAll()
+        timer?.invalidate()
     }
     
     func nextWord(){

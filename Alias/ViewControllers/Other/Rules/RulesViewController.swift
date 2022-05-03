@@ -7,17 +7,20 @@
 
 import UIKit
 
+fileprivate struct RuleModel {
+    let text: String
+}
+
 class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let identifire = "MyCell"
-    let rules = [
-        Rule(text: "Задача каждого игрока - объяснить как можно больше слов товарищам по команде за ограниченное время."),
-        Rule(text: "Во время объяснения нельзя использовать однокоренные слова, озвучивать перевод иностранных языков"),
-        Rule(text: "Отгаданное слово приносит команде одно очко, а за пропущенное слово команда штрафуется (в зависимости от настроек)."),
-        Rule(text: "Победителем становится команда, у которой количество очков достигло заранее установленного значения."),
+    private let rules = [
+        RuleModel(text: "Задача каждого игрока - объяснить как можно больше слов товарищам по команде за ограниченное время."),
+        RuleModel(text: "Во время объяснения нельзя использовать однокоренные слова, озвучивать перевод иностранных языков"),
+        RuleModel(text: "Отгаданное слово приносит команде одно очко, а за пропущенное слово команда штрафуется (в зависимости от настроек)."),
+        RuleModel(text: "Победителем становится команда, у которой количество очков достигло заранее установленного значения."),
     ]
     
-    lazy var headerView: UIImageView = {
+    private lazy var headerView: UIImageView = {
         let view = UIImageView()
         view.frame = CGRect(x: 0, y: 0, width: 120, height: 120)
         view.center.x = tableView.center.x
@@ -25,7 +28,7 @@ class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.contentMode = .scaleAspectFit
         return view
     }()
-    var tableView = UITableView()
+    private var tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +51,7 @@ class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.tableHeaderView = headerView
     }
     
-    func createTable() {
+    private func createTable() {
         self.tableView = UITableView(frame: view.bounds, style: .plain)
         self.tableView.register(RuleTableViewCell.self, forCellReuseIdentifier: RuleTableViewCell.identifier)
         self.tableView.delegate = self
@@ -60,7 +63,9 @@ class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.sectionHeaderHeight = 140
         tableView.allowsSelection = false
     }
+    
     //MARK: - UITableViewDataSource
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rules.count
     }

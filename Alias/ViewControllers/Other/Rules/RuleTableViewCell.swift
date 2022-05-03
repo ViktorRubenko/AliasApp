@@ -9,6 +9,8 @@ import UIKit
 
 class RuleTableViewCell: UITableViewCell {
 
+    static let identifier = "RuleTableViewCell"
+    
     let imageRule: UIImageView = {
         $0.contentMode = .scaleAspectFit
         $0.tintColor = Constants.Colors.bottomButtonColor
@@ -23,8 +25,6 @@ class RuleTableViewCell: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
-    
-    static let identifier = "RuleTableViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
