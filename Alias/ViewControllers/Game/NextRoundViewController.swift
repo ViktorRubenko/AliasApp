@@ -72,7 +72,7 @@ class NextRoundViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         roundLabel.text = "Раунд \(gameService.currentRound) / \(gameService.totalRounds)"
-        nextRoundTeamLabel.text = gameService.currentTeam.name
+        nextRoundTeamLabel.text = gameService.currentTeam?.name
     }
     
     override func viewWillLayoutSubviews() {

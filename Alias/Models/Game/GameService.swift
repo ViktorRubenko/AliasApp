@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TeamModel {
+struct TeamModel: Equatable {
     let name: String
     var score: Int
 }
@@ -17,14 +17,16 @@ struct CategoryModel {
     let words: [String]
 }
 
-protocol GameServiceProtocol {
+protocol GameServiceProtocol: AnyObject {
+    var delegate: GameServiceDelegate? {get set}
+    
     var currentRound: Int { get }
     var roundPoints: Int { get }
     var skippedWords: Int { get }
     var totalRounds: Int { get }
     var roundResults: [String: Bool] { get }
     var teams: [TeamModel] { get }
-    var currentTeam: TeamModel { get }
+    var currentTeam: TeamModel? { get }
     var categories: [CategoryModel] { get }
     var totalTimerSeconds: Int { get }
     
@@ -39,11 +41,28 @@ protocol GameServiceProtocol {
     func guessedWord()
     func skipWord()
     func resetRound()
+    func endGame()
 }
 
-protocol GameServiceDelegate {
+protocol GameServiceDelegate: AnyObject {
     func handleAction(gameService: GameServiceProtocol, action: String)
-    func handleWord(gameService: GameServiceProtocol, action: String)
-    func timerDidUpdated(gameService: GameServiceProtocol, seconds: Int)
-    func roundDidEnded(gameService: GameServiceProtocol, roundPoints: Int, roundResults: [String: Bool])
+    func handleWord(gameService: GameServiceProtocol, word: String)
+    func timerDidUpdate(gameService: GameServiceProtocol, seconds: Int)
+    func roundDidEnd(gameService: GameServiceProtocol,teamName: String, roundPoints: Int, roundResults: [String: Bool])
+}
+
+
+
+
+extension CategoryModel {
+    
+  static var sampleWords: [String] {
+        var count = 0
+        var wordSet = [String()]
+        for _ in 0...300 {
+            wordSet.append(String(count))
+            count += 1
+        }
+        return wordSet
+    }
 }
