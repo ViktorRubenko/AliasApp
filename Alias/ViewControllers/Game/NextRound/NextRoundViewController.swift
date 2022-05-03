@@ -94,14 +94,14 @@ class NextRoundViewController: UIViewController, NextRoundBaseCoordinated {
         contentView.addSubview(nextRoundTeamLabel)
         contentView.addSubview(teamsStackView)
         
-        gameService.roundResults.forEach {
+        gameService.teams.forEach {
             let innerStackView = UIStackView()
             innerStackView.axis = .horizontal
             innerStackView.distribution = .fillProportionally
             let teamLabel = componentsFactory.roundTeamListLabel()
             let teamScoreLabel = componentsFactory.roundTeamScoreListLabel()
-            teamLabel.text = "\($0):"
-            teamScoreLabel.text = "\($1)"
+            teamLabel.text = "\($0.name):"
+            teamScoreLabel.text = "\($0.score)"
             innerStackView.addArrangedSubview(teamLabel)
             innerStackView.addArrangedSubview(teamScoreLabel)
             self.teamsStackView.addArrangedSubview(innerStackView)
