@@ -13,12 +13,15 @@ class GameBrain: GameServiceProtocol {
     
     weak var delegate: GameServiceDelegate?
     
-    private(set) var currentRound: Int = 0
+    private(set) var currentRound: Int = 1
     private(set) var roundPoints: Int = 0
     private(set) var skippedWords: Int = 0
-    private(set) var totalRounds: Int = 0
+    private(set) var totalRounds: Int = 4
     private(set) var roundResults: [String : Bool] = [:]
-    private(set) var teams: [TeamModel] = []
+    private(set) var teams: [TeamModel] = [
+        TeamModel(name: "Травоядные", score: 0),
+        TeamModel(name: "Хищники", score: 0)
+    ]
     private(set) var currentTeam: TeamModel? = nil
     private(set) var categories: [CategoryModel] = []
     private(set) var totalTimerSeconds: Int = 60
@@ -38,7 +41,9 @@ class GameBrain: GameServiceProtocol {
     }
     
     func deleteTeam(at: Int) {
-        teams.remove(at: at)
+        if teams.count > 2 {
+            teams.remove(at: at)
+        }
     }
     
     func setRounds(_ rounds: Int) {
@@ -75,6 +80,7 @@ class GameBrain: GameServiceProtocol {
         roundPoints = 0
         skippedWords = 0
         secondsRemaining = totalTimerSeconds
+        
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] (timer) in
             guard let self = self else {timer.invalidate(); return}
             self.secondsRemaining -= 1
@@ -86,7 +92,8 @@ class GameBrain: GameServiceProtocol {
                     roundPoints: self.roundPoints,
                     roundResults: self.roundResults)
                 var teamIndex = self.teams.firstIndex(where: {$0 == self.currentTeam})!
-                teamIndex = (teamIndex < self.teams.count-1) ? teamIndex+1 : 0
+                self.teams[teamIndex].score += self.roundPoints
+                teamIndex = (teamIndex < self.teams.count-1) ? teamIndex + 1 : 0
                 self.currentTeam = self.teams[teamIndex]
                 timer.invalidate()
             }
