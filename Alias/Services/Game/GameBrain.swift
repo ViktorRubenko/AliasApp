@@ -23,12 +23,14 @@ class GameBrain: GameServiceProtocol {
         TeamModel(name: "Хищники", score: 0)
     ]
     private(set) var currentTeam: TeamModel? = nil
-    private(set) var categories: [CategoryModel] = []
+    let categories: [CategoryModel] = CategoriesDict.compactMap {
+        CategoryModel(name: $0, words: $1)
+    }
     private(set) var totalTimerSeconds: Int = 60
     
     private var withAction: Bool = false
     private var currentWord: String = ""
-    private let actions: [String] = ["Jump", "Run", "Sit", "Fly"]
+    private let actions: [String] = GameActions
     private var secondsRemaining: Int = 0
     private var currentCategory: CategoryModel? = nil
     private var usedWords: [[String]] = []
@@ -70,47 +72,41 @@ class GameBrain: GameServiceProtocol {
     
     func startRound() {
         roundResults = [:]
+        roundPoints = 0
+        skippedWords = 0
+        secondsRemaining = totalTimerSeconds
+        
         if usedWords.count > 4 {
             shuffledWords += usedWords.removeFirst()
             shuffledWords.shuffle()
         }
-        usedWords.append([])
-        currentWord = shuffledWords.removeFirst()
-        delegate?.handleWord(gameService: self, word: currentWord)
         
-        roundPoints = 0
-        skippedWords = 0
-        secondsRemaining = totalTimerSeconds
+        usedWords.append([])
+        
+        currentWord = shuffledWords.removeFirst()
+        delegate?.handleWord(gameService: self, word: currentWord, action: nil)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] (timer) in
             guard let self = self else {timer.invalidate(); return}
             self.secondsRemaining -= 1
             self.delegate?.timerDidUpdate(gameService: self, seconds: self.secondsRemaining)
             if self.secondsRemaining == 0 {
-                self.delegate?.roundDidEnd(
-                    gameService: self,
-                    teamName: self.currentTeam!.name,
-                    roundPoints: self.roundPoints,
-                    roundResults: self.roundResults)
-                var teamIndex = self.teams.firstIndex(where: {$0 == self.currentTeam})!
-                self.teams[teamIndex].score += self.roundPoints
-                teamIndex = (teamIndex < self.teams.count-1) ? teamIndex + 1 : 0
-                self.currentTeam = self.teams[teamIndex]
+                self.endRound()
                 timer.invalidate()
             }
         }
     }
     
     func guessedWord() {
-        nextWord()
         roundPoints += withAction ? 3 : 1
         roundResults[currentWord] = true
+        nextWord()
     }
     
     func skipWord() {
-        nextWord()
         roundPoints -= 1
         roundResults[currentWord] = false
+        nextWord()
     }
     
     func resetRound() {
@@ -125,16 +121,31 @@ class GameBrain: GameServiceProtocol {
         timer?.invalidate()
     }
     
-    func nextWord(){
-        if withAction {
-            withAction = false
-        }
+    func nextWord() {
         usedWords[usedWords.count - 1].append(currentWord)
         currentWord = shuffledWords.removeFirst()
-        delegate?.handleWord(gameService: self, word: currentWord)
-        if [true, false, false, false].randomElement()! {
-            withAction = true
-            delegate?.handleAction(gameService: self, action: actions.randomElement()!)
+        withAction = [true, false, false, false].randomElement()!
+        delegate?.handleWord(gameService: self, word: currentWord, action: withAction ? actions.randomElement()! : nil)
+        checkSuffledWords()
+    }
+    
+    private func checkSuffledWords() {
+        if shuffledWords.count < 1 {
+            shuffledWords += usedWords.removeFirst()
+            shuffledWords.shuffle()
         }
+    }
+    
+    func endRound() {
+        delegate?.roundDidEnd(
+            gameService: self,
+            teamName: currentTeam!.name,
+            roundPoints: roundPoints,
+            roundResults: roundResults)
+        usedWords[usedWords.count - 1].append(currentWord)
+        var teamIndex = teams.firstIndex(where: {$0 == currentTeam})!
+        teams[teamIndex].score += roundPoints
+        teamIndex = (teamIndex < teams.count-1) ? teamIndex + 1 : 0
+        currentTeam = teams[teamIndex]
     }
 }

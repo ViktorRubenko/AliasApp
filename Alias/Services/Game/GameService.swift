@@ -45,24 +45,7 @@ protocol GameServiceProtocol: AnyObject {
 }
 
 protocol GameServiceDelegate: AnyObject {
-    func handleAction(gameService: GameServiceProtocol, action: String)
-    func handleWord(gameService: GameServiceProtocol, word: String)
+    func handleWord(gameService: GameServiceProtocol, word: String, action: String?)
     func timerDidUpdate(gameService: GameServiceProtocol, seconds: Int)
     func roundDidEnd(gameService: GameServiceProtocol,teamName: String, roundPoints: Int, roundResults: [String: Bool])
-}
-
-
-
-
-extension CategoryModel {
-    
-  static var sampleWords: [String] {
-        var count = 0
-        var wordSet = [String()]
-        for _ in 0...300 {
-            wordSet.append(String(count))
-            count += 1
-        }
-        return wordSet
-    }
 }
