@@ -47,6 +47,7 @@ struct ComponentsFactory: ComponentsBaseFactory {
     
     func numberOfRoundsTextLabel() -> UILabel {
         let label = UILabel()
+        label.text = "Количество раундов:"
         label.textColor = Constants.Colors.textColor
         label.font = .systemFont(ofSize: 25, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false

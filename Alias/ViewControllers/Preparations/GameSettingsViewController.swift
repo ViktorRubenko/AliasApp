@@ -105,6 +105,7 @@ class GameSettingsViewController: UIViewController, PreparationsBaseViewControll
 
     @objc func didTapBottomButton() {
         gameService.setRounds(numberRounds)
+        gameService.startNewGame()
         coordinator?.goToNextRound()
     }
 }
