@@ -2,7 +2,7 @@
 //  RulesViewController.swift
 //  Alias
 //
-//  Created by Victor Rubenko on 01.05.2022.
+//  Created by Даниил Симахин on 01.05.2022.
 //
 
 import UIKit
