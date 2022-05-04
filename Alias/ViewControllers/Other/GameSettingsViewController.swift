@@ -5,34 +5,93 @@
 //  Created by Victor Rubenko on 01.05.2022.
 //
 
-import SwiftUI
 import UIKit
 
 class GameSettingsViewController: UIViewController {
 
-    private var gameService: GameServiceProtocol!
     private var componentsFactory: ComponentsBaseFactory!
+    
+    var numberRounds: Int = 1
     
     private lazy var bottomButton: UIButton = {
         let button = componentsFactory.bottomButton()
-        button.setTitle("Далее", for: .normal)
+        button.setTitle("Далее!", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        //button.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
         return button
     }()
-    
     private let bottomButtonContainer: UIView = {
         let view = UIView()
         view.backgroundColor = Constants.Colors.bottomButtonColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    private let numberRoundsTextLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Количество раундов"
+        label.textColor = Constants.Colors.textColor
+        label.font = .systemFont(ofSize: 25, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private let numberRoundsCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "1"
+        label.textColor = Constants.Colors.tertiaryTextColor
+        label.font = .systemFont(ofSize: 100, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private let numberRoundsStepper: UIStepper = {
+        let stepper = UIStepper()
+        stepper.sizeThatFits(CGSize(width: 50, height: 50))
+        stepper.minimumValue = 1
+        stepper.maximumValue = 10
+        stepper.value = 1.0
+        stepper.addTarget(self, action: #selector(pressedChangedValue), for: .valueChanged)
+        stepper.translatesAutoresizingMaskIntoConstraints = false
+        return stepper
+    }()
+    private let numberRoundsStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.axis = .vertical
+        stackview.alignment = .center
+        stackview.distribution = .fillProportionally
+        stackview.spacing = 10
+        stackview.translatesAutoresizingMaskIntoConstraints = false
+        return stackview
+    }()
+    
+    init(componentsFactory: ComponentsBaseFactory) {
+        self.componentsFactory = componentsFactory
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
+        setupNavBar()
+    }
+    
+    @objc private func pressedChangedValue() {
+        numberRounds = Int(numberRoundsStepper.value)
+        numberRoundsCountLabel.text = String(numberRounds)
+    }
+    
+    private func setupViews() {
+        view.backgroundColor = Constants.Colors.mainBackgroundColor
+        
         view.addSubview(bottomButtonContainer)
+        view.addSubview(numberRoundsStackView)
         bottomButtonContainer.addSubview(bottomButton)
-
+        numberRoundsStackView.addArrangedSubview(numberRoundsTextLabel)
+        numberRoundsStackView.addArrangedSubview(numberRoundsCountLabel)
+        numberRoundsStackView.addArrangedSubview(numberRoundsStepper)
+        
         NSLayoutConstraint.activate([
             bottomButtonContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             bottomButtonContainer.leadingAnchor.constraint(equalTo: bottomButton.leadingAnchor),
@@ -43,46 +102,19 @@ class GameSettingsViewController: UIViewController {
             bottomButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             bottomButton.heightAnchor.constraint(equalToConstant: Constants.Sizes.BottomButton.height),
-        ])
-        // Do any additional setup after loading the view.
-    }
-    
-    init(gameService: GameServiceProtocol, componentsFactory: ComponentsBaseFactory) {
-        self.componentsFactory = componentsFactory
-        self.gameService = gameService
-        super.init(nibName: nil, bundle: nil)
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    struct SwiftUIController: UIViewControllerRepresentable {
-        typealias UIViewControllerType = GameSettingsViewController
-        
-        func makeUIViewController(context: Context) -> UIViewControllerType {
-            let viewController = UIViewControllerType(gameService: GameServiceForTest.shared, componentsFactory: ComponentFactory())
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
             
-        }
+            numberRoundsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50),
+            numberRoundsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
+            numberRoundsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
+            numberRoundsStackView.bottomAnchor.constraint(greaterThanOrEqualTo: bottomButtonContainer.topAnchor, constant: -100)
+        ])
     }
     
-    struct SwiftUIController_Previews: PreviewProvider {
-        static var previews: some View {
-            SwiftUIController().edgesIgnoringSafeArea(.all)
-        }
+    private func setupNavBar() {
+        title = "Настройки"
+    }
+
+    @objc func didTapBottomButton() {
+        print("perform segue")
     }
 }
