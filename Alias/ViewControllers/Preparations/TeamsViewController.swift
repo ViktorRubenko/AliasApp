@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 class TeamsViewController: UIViewController, PreparationsBaseViewController {
     
@@ -18,7 +19,7 @@ class TeamsViewController: UIViewController, PreparationsBaseViewController {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(SwipeTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.sectionFooterHeight = UITableView.automaticDimension
         tableView.estimatedSectionFooterHeight = 44.0
@@ -107,26 +108,14 @@ extension TeamsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SwipeTableViewCell
         var config = UIListContentConfiguration.cell()
         config.text = gameService.teams[indexPath.row].name
         cell.contentConfiguration = config
+        cell.delegate = self
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        gameService.teams.count > 2
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            gameService.deleteTeam(at: indexPath.row)
-            tableView.performBatchUpdates {
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        }
-    }
-    
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UITableViewHeaderFooterView()
         
@@ -147,5 +136,22 @@ extension TeamsViewController: UITableViewDelegate, UITableViewDataSource {
         ])
         
         return footerView
+    }
+}
+
+extension TeamsViewController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        guard gameService.teams.count > 2 else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            self.gameService.deleteTeam(at: indexPath.row)
+            self.tableView.performBatchUpdates {
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+
+        }
+        
+        return [deleteAction]
     }
 }
