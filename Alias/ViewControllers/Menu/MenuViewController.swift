@@ -14,7 +14,6 @@ class MenuViewController: UIViewController, MainBaseCoordinated {
     private lazy var newGameButton: UIButton = {
         let button = componentsFactory.mainMenuButton()
         button.setTitle("Новая игра", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapNewGameButton), for: .touchUpInside)
         return button
     }()
@@ -22,7 +21,6 @@ class MenuViewController: UIViewController, MainBaseCoordinated {
     private lazy var rulesButton: UIButton = {
         let button = componentsFactory.mainMenuButton()
         button.setTitle("Правила", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapRulesButton), for: .touchUpInside)
         return button
     }()
@@ -33,14 +31,7 @@ class MenuViewController: UIViewController, MainBaseCoordinated {
         return view
     }()
     
-    private let logoImage: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "logo")
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        return iv
-    }()
-    
+    private lazy var logoImageView = componentsFactory.logoImageView()
     private var componentsFactory: ComponentsBaseFactory!
     
     private var needConfigureLayouts = true
@@ -70,7 +61,7 @@ class MenuViewController: UIViewController, MainBaseCoordinated {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        logoImage.layer.removeAllAnimations()
+        logoImageView.layer.removeAllAnimations()
     }
     
     override func viewDidLayoutSubviews() {
@@ -84,9 +75,9 @@ class MenuViewController: UIViewController, MainBaseCoordinated {
                 $0.layer.shadowColor = UIColor.gray.withAlphaComponent(0.8).cgColor
                 $0.layer.shadowOffset = CGSize(width: 0, height: 5)
             }
-            logoImage.layer.shadowColor = UIColor.gray.cgColor
-            logoImage.layer.shadowOpacity = 1
-            logoImage.layer.shadowOffset = CGSize(width: 5, height: 5)
+            logoImageView.layer.shadowColor = UIColor.gray.cgColor
+            logoImageView.layer.shadowOpacity = 1
+            logoImageView.layer.shadowOffset = CGSize(width: 5, height: 5)
         }
     }
     
@@ -95,20 +86,20 @@ class MenuViewController: UIViewController, MainBaseCoordinated {
         
         view.backgroundColor = Constants.Colors.mainBackgroundColor
         
-        view.addSubview(logoImage)
+        view.addSubview(logoImageView)
         view.addSubview(buttonsContainer)
         buttonsContainer.addSubview(newGameButton)
         buttonsContainer.addSubview(rulesButton)
         
         NSLayoutConstraint.activate([
-            logoImage.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.5),
-            logoImage.heightAnchor.constraint(equalTo: logoImage.widthAnchor),
-            logoImage.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            logoImage.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor, constant: -100),
+            logoImageView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.5),
+            logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
+            logoImageView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            logoImageView.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor, constant: -100),
             
             buttonsContainer.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
             buttonsContainer.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            buttonsContainer.topAnchor.constraint(equalTo: logoImage.bottomAnchor),
+            buttonsContainer.topAnchor.constraint(equalTo: logoImageView.bottomAnchor),
             buttonsContainer.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             
             rulesButton.widthAnchor.constraint(greaterThanOrEqualTo: buttonsContainer.widthAnchor, multiplier: 0.7),
@@ -132,9 +123,9 @@ class MenuViewController: UIViewController, MainBaseCoordinated {
     
     private func startAnimation() {
         UIView.animate(withDuration: 2, delay: 0, options: [.autoreverse, .repeat]) {
-            self.logoImage.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+            self.logoImageView.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
         } completion: { _ in
-            self.logoImage.transform = .identity
+            self.logoImageView.transform = .identity
         }
     }
     

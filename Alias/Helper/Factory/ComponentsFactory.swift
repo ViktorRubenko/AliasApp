@@ -15,14 +15,51 @@ protocol ComponentsBaseFactory {
     func roundTeamListLabel() -> UILabel
     func roundTeamScoreListLabel() -> UILabel
     func nextRoundTeamLabel() -> UILabel
+    func numberOfRoundsTextLabel() -> UILabel
+    func numberOfRoundsCountLabel() -> UILabel
+    func bottomButtonContainer() -> UIView
+    func logoImageView() -> UIImageView
 }
 
 struct ComponentsFactory: ComponentsBaseFactory {
+    func logoImageView() -> UIImageView {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(named: "logo")
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }
+    
+    func bottomButtonContainer() -> UIView {
+        let view = UIView()
+        view.backgroundColor = Constants.Colors.bottomButtonColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+    
+    func numberOfRoundsCountLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = Constants.Colors.tertiaryTextColor
+        label.font = .systemFont(ofSize: 100, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
+    func numberOfRoundsTextLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = Constants.Colors.textColor
+        label.font = .systemFont(ofSize: 25, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
     func roundLabel() -> UILabel {
         let label = UILabel()
+        label.text = "Количество раундов"
         label.textColor = Constants.Colors.textColor
         label.font = .systemFont(ofSize: 50, weight: .semibold)
         label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
     
@@ -31,6 +68,7 @@ struct ComponentsFactory: ComponentsBaseFactory {
         label.textColor = Constants.Colors.textColor
         label.font = .systemFont(ofSize: 30, weight: .semibold)
         label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
     
@@ -39,6 +77,7 @@ struct ComponentsFactory: ComponentsBaseFactory {
         label.textColor = Constants.Colors.tertiaryTextColor
         label.font = .systemFont(ofSize: 40, weight: .semibold)
         label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
     
@@ -46,15 +85,19 @@ struct ComponentsFactory: ComponentsBaseFactory {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30, weight: .semibold)
         label.textColor = Constants.Colors.textColor
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
     
     
+    
     func bottomButton() -> UIButton {
         let button = UIButton(type: .system)
+        button.setTitle("Далее", for: .normal)
         button.setTitleColor(Constants.Colors.secondaryTextColor, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: Constants.Sizes.BottomButton.textSize, weight: .semibold)
+        button.titleLabel?.font = .systemFont(ofSize: 24, weight: .semibold)
         button.backgroundColor = Constants.Colors.bottomButtonColor
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
     
@@ -63,6 +106,7 @@ struct ComponentsFactory: ComponentsBaseFactory {
         button.setTitleColor(Constants.Colors.secondaryTextColor, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 25, weight: .semibold)
         button.backgroundColor = Constants.Colors.secondaryBackgrounColor
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
     
@@ -72,6 +116,7 @@ struct ComponentsFactory: ComponentsBaseFactory {
         label.font = .italicSystemFont(ofSize: 14)
         label.textColor = .gray
         label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
 }

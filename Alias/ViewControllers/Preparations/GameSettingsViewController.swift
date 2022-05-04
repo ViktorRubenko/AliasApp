@@ -22,26 +22,11 @@ class GameSettingsViewController: UIViewController, PreparationsBaseViewControll
         button.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
         return button
     }()
-    private let bottomButtonContainer: UIView = {
-        let view = UIView()
-        view.backgroundColor = Constants.Colors.bottomButtonColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    private let numberRoundsTextLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Количество раундов"
-        label.textColor = Constants.Colors.textColor
-        label.font = .systemFont(ofSize: 25, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private lazy var bottomButtonContainer = componentsFactory.bottomButtonContainer()
+    private lazy var numberRoundsTextLabel = componentsFactory.numberOfRoundsTextLabel()
     private lazy var numberRoundsCountLabel: UILabel = {
-        let label = UILabel()
+        let label = componentsFactory.numberOfRoundsCountLabel()
         label.text = String(numberRounds)
-        label.textColor = Constants.Colors.tertiaryTextColor
-        label.font = .systemFont(ofSize: 100, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     private lazy var numberRoundsStepper: UIStepper = {

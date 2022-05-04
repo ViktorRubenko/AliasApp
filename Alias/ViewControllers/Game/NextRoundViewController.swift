@@ -21,29 +21,15 @@ class NextRoundViewController: UIViewController, GameBaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    private lazy var roundLabel: UILabel = {
-        let label = componentsFactory.roundLabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    private lazy var nextRoundTeamLabel: UILabel = {
-        let label = componentsFactory.nextRoundTeamLabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private lazy var roundLabel = componentsFactory.roundLabel()
+    private lazy var nextRoundTeamLabel = componentsFactory.nextRoundTeamLabel()
     private lazy var bottomButton: UIButton = {
         let button = componentsFactory.bottomButton()
         button.setTitle("Старт!", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
         return button
     }()
-    private let bottomButtonContainer: UIView = {
-        let view = UIView()
-        view.backgroundColor = Constants.Colors.bottomButtonColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var bottomButtonContainer = componentsFactory.bottomButtonContainer()
     private let teamsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical

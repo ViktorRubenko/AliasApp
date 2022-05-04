@@ -28,8 +28,6 @@ class TeamsViewController: UIViewController, PreparationsBaseViewController {
     
     private lazy var bottomButton: UIButton = {
         let button = componentsFactory.bottomButton()
-        button.setTitle("Далее", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
         return button
     }()
