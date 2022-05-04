@@ -7,12 +7,13 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController, CategoriesBaseCoordinated {
-    weak var coordinator: CategoriesBaseCoordinator?
-    private var componentsFactory: ComponentsFactory!
-    private var gameService: GameServiceProtocol!
+class CategoriesViewController: UIViewController, PreparationsBaseViewController {
     
-    init(coordinator: CategoriesBaseCoordinator, gameService: GameServiceProtocol, componentsFactory: ComponentsFactory) {
+    weak var coordinator: PreparationsBaseCoordinator?
+    var componentsFactory: ComponentsBaseFactory!
+    var gameService: GameBaseService!
+    
+    init(coordinator: PreparationsCoordinator, gameService: GameBaseService, componentsFactory: ComponentsFactory) {
         self.coordinator = coordinator
         self.componentsFactory = componentsFactory
         self.gameService = gameService

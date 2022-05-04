@@ -7,10 +7,10 @@
 
 import UIKit
 
-class NextRoundViewController: UIViewController, NextRoundBaseCoordinated {
-    weak var coordinator: NextRoundBaseCoordinator?
-    private let gameService: GameServiceProtocol!
-    private var componentsFactory: ComponentsBaseFactory!
+class NextRoundViewController: UIViewController, GameBaseViewController {
+    weak var coordinator: GameBaseCoordinator?
+    let gameService: GameBaseService!
+    var componentsFactory: ComponentsBaseFactory!
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ class NextRoundViewController: UIViewController, NextRoundBaseCoordinated {
     }()
     private var teamsStackViewHeightConstraint: NSLayoutConstraint!
     
-    init(coordinator: NextRoundBaseCoordinator, gameService: GameServiceProtocol, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
         self.coordinator = coordinator
         self.gameService = gameService
         self.componentsFactory = componentsFactory

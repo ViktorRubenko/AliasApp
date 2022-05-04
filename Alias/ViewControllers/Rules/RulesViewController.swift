@@ -11,7 +11,9 @@ fileprivate struct RuleModel {
     let text: String
 }
 
-class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RulesBaseCoordinated {
+    
+    weak var coordinator: RulesBaseCoordinator?
     
     private let rules = [
         RuleModel(text: "Задача каждого игрока - объяснить как можно больше слов товарищам по команде за ограниченное время."),
@@ -29,6 +31,15 @@ class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return view
     }()
     private var tableView = UITableView()
+    
+    init(coordinator: RulesBaseCoordinator) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

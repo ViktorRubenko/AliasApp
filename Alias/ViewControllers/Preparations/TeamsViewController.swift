@@ -7,9 +7,12 @@
 
 import UIKit
 
-class TeamsViewController: UIViewController, TeamsBaseCoordinated {
-    weak var coordinator: TeamsBaseCoordinator?
-    var gameService: GameServiceProtocol!
+class TeamsViewController: UIViewController, PreparationsBaseViewController {
+    
+    weak var coordinator: PreparationsBaseCoordinator?
+    var componentsFactory: ComponentsBaseFactory!
+    var gameService: GameBaseService!
+    
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -31,9 +34,7 @@ class TeamsViewController: UIViewController, TeamsBaseCoordinated {
         return button
     }()
     
-    private var componentsFactory: ComponentsBaseFactory!
-    
-    init(coordinator: TeamsBaseCoordinator, gameService: GameServiceProtocol, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: PreparationsBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
         self.coordinator = coordinator
         self.componentsFactory = componentsFactory
         self.gameService = gameService
@@ -98,7 +99,7 @@ class TeamsViewController: UIViewController, TeamsBaseCoordinated {
     }
     
     @objc private func didTapBottomButton() {
-        coordinator?.goToCategories()
+        coordinator?.goToCaterogies()
     }
 }
 

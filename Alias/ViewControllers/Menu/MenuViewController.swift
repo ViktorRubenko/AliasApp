@@ -7,9 +7,9 @@
 
 import UIKit
 
-class MenuViewController: UIViewController, MenuBaseCoordinated {
+class MenuViewController: UIViewController, MainBaseCoordinated {
     
-    weak var coordinator: MenuBaseCoordinator?
+    weak var coordinator: MainBaseCoordinator?
 
     private lazy var newGameButton: UIButton = {
         let button = componentsFactory.mainMenuButton()
@@ -45,7 +45,7 @@ class MenuViewController: UIViewController, MenuBaseCoordinated {
     
     private var needConfigureLayouts = true
     
-    init(coordinator: MenuBaseCoordinator, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: MainBaseCoordinator, componentsFactory: ComponentsBaseFactory) {
         self.coordinator = coordinator
         self.componentsFactory = componentsFactory
         super.init(nibName: nil, bundle: nil)
@@ -139,11 +139,10 @@ class MenuViewController: UIViewController, MenuBaseCoordinated {
     }
     
     @objc private func didTapNewGameButton() {
-        coordinator?.goToTeams()
+        coordinator?.goToPreparations()
     }
     
     @objc private func didTapRulesButton() {
         coordinator?.goToRules()
     }
-    
 }

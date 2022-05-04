@@ -17,7 +17,7 @@ struct CategoryModel {
     let words: [String]
 }
 
-protocol GameServiceProtocol: AnyObject {
+protocol GameBaseService: AnyObject {
     var delegate: GameServiceDelegate? {get set}
     
     var currentRound: Int { get }
@@ -45,7 +45,8 @@ protocol GameServiceProtocol: AnyObject {
 }
 
 protocol GameServiceDelegate: AnyObject {
-    func handleWord(gameService: GameServiceProtocol, word: String, action: String?)
-    func timerDidUpdate(gameService: GameServiceProtocol, seconds: Int)
-    func roundDidEnd(gameService: GameServiceProtocol,teamName: String, roundPoints: Int, roundResults: [String: Bool])
+    func handleWord(gameService: GameBaseService, word: String, action: String?)
+    func timerDidUpdate(gameService: GameBaseService, seconds: Int)
+    func roundDidEnd(gameService: GameBaseService)
+    func gameDidEnd(gameService: GameBaseService)
 }

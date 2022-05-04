@@ -13,15 +13,8 @@
 		E3A05A1D2821C11600855DFD /* AliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A1C2821C11600855DFD /* AliasTests.swift */; };
 		E3A05A272821C94800855DFD /* CategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A262821C94800855DFD /* CategoriesData.swift */; };
 		E3A05A292821D93C00855DFD /* ActionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A282821D93C00855DFD /* ActionsData.swift */; };
-		E3A05A2C2821DBA100855DFD /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A2B2821DBA100855DFD /* BaseCoordinator.swift */; };
-		E3A05A2F2821DCDB00855DFD /* MainBaseCoordinator .swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A2E2821DCDB00855DFD /* MainBaseCoordinator .swift */; };
+		E3A05A2C2821DBA100855DFD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A2B2821DBA100855DFD /* Coordinator.swift */; };
 		E3A05A312821DD2800855DFD /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A302821DD2800855DFD /* MainCoordinator.swift */; };
-		E3A05A362821E04700855DFD /* MenuCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A352821E04700855DFD /* MenuCoordinator.swift */; };
-		E3A05A382821E17D00855DFD /* RulesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A372821E17D00855DFD /* RulesCoordinator.swift */; };
-		E3A05A3A2821E18500855DFD /* TeamsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A392821E18500855DFD /* TeamsCoordinator.swift */; };
-		E3A05A412821EDDB00855DFD /* GameSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A402821EDDB00855DFD /* GameSettingsCoordinator.swift */; };
-		E3A05A432821EF0000855DFD /* CategoriesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A422821EF0000855DFD /* CategoriesCoordinator.swift */; };
-		E3A05A462821F26A00855DFD /* NextRoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A452821F26A00855DFD /* NextRoundController.swift */; };
 		E3B4D2F3281EB29E0042AF06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D2F2281EB29E0042AF06 /* AppDelegate.swift */; };
 		E3B4D2F5281EB29E0042AF06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D2F4281EB29E0042AF06 /* SceneDelegate.swift */; };
 		E3B4D2FC281EB2A10042AF06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B4D2FB281EB2A10042AF06 /* Assets.xcassets */; };
@@ -40,6 +33,10 @@
 		E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D343281F23060042AF06 /* WinnerViewController.swift */; };
 		E3B4D347281F332B0042AF06 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D346281F332B0042AF06 /* NavigationController.swift */; };
 		E3B4D34E281F54050042AF06 /* ComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */; };
+		E3FF9B86282303F6003FAA9E /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FF9B85282303F6003FAA9E /* GameCoordinator.swift */; };
+		E3FF9B89282304CF003FAA9E /* PreparationsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FF9B88282304CF003FAA9E /* PreparationsCoordinator.swift */; };
+		E3FF9B8B28230572003FAA9E /* RulesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FF9B8A28230572003FAA9E /* RulesCoordinator.swift */; };
+		E3FF9B932823235F003FAA9E /* VCProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FF9B922823235F003FAA9E /* VCProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,15 +56,8 @@
 		E3A05A1C2821C11600855DFD /* AliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasTests.swift; sourceTree = "<group>"; };
 		E3A05A262821C94800855DFD /* CategoriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesData.swift; sourceTree = "<group>"; };
 		E3A05A282821D93C00855DFD /* ActionsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsData.swift; sourceTree = "<group>"; };
-		E3A05A2B2821DBA100855DFD /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
-		E3A05A2E2821DCDB00855DFD /* MainBaseCoordinator .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainBaseCoordinator .swift"; sourceTree = "<group>"; };
+		E3A05A2B2821DBA100855DFD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E3A05A302821DD2800855DFD /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		E3A05A352821E04700855DFD /* MenuCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCoordinator.swift; sourceTree = "<group>"; };
-		E3A05A372821E17D00855DFD /* RulesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesCoordinator.swift; sourceTree = "<group>"; };
-		E3A05A392821E18500855DFD /* TeamsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCoordinator.swift; sourceTree = "<group>"; };
-		E3A05A402821EDDB00855DFD /* GameSettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsCoordinator.swift; sourceTree = "<group>"; };
-		E3A05A422821EF0000855DFD /* CategoriesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCoordinator.swift; sourceTree = "<group>"; };
-		E3A05A452821F26A00855DFD /* NextRoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextRoundController.swift; sourceTree = "<group>"; };
 		E3B4D2EF281EB29E0042AF06 /* Alias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3B4D2F2281EB29E0042AF06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3B4D2F4281EB29E0042AF06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +78,10 @@
 		E3B4D343281F23060042AF06 /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		E3B4D346281F332B0042AF06 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFactory.swift; sourceTree = "<group>"; };
+		E3FF9B85282303F6003FAA9E /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
+		E3FF9B88282304CF003FAA9E /* PreparationsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationsCoordinator.swift; sourceTree = "<group>"; };
+		E3FF9B8A28230572003FAA9E /* RulesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesCoordinator.swift; sourceTree = "<group>"; };
+		E3FF9B922823235F003FAA9E /* VCProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +115,6 @@
 			children = (
 				E3B4D309281EBCC40042AF06 /* RulesViewController.swift */,
 				A5101DF02821783500EDCB5F /* RuleTableViewCell.swift */,
-				E3A05A372821E17D00855DFD /* RulesCoordinator.swift */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -138,9 +131,11 @@
 		E3A05A2D2821DBA500855DFD /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				E3A05A2B2821DBA100855DFD /* BaseCoordinator.swift */,
-				E3A05A2E2821DCDB00855DFD /* MainBaseCoordinator .swift */,
+				E3A05A2B2821DBA100855DFD /* Coordinator.swift */,
 				E3A05A302821DD2800855DFD /* MainCoordinator.swift */,
+				E3FF9B85282303F6003FAA9E /* GameCoordinator.swift */,
+				E3FF9B88282304CF003FAA9E /* PreparationsCoordinator.swift */,
+				E3FF9B8A28230572003FAA9E /* RulesCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -149,45 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				E3B4D307281EBB2A0042AF06 /* MenuViewController.swift */,
-				E3A05A352821E04700855DFD /* MenuCoordinator.swift */,
 			);
 			path = Menu;
-			sourceTree = "<group>";
-		};
-		E3A05A3B2821E18800855DFD /* Teams */ = {
-			isa = PBXGroup;
-			children = (
-				E3B4D33B281F229E0042AF06 /* TeamsViewController.swift */,
-				E3A05A392821E18500855DFD /* TeamsCoordinator.swift */,
-			);
-			path = Teams;
-			sourceTree = "<group>";
-		};
-		E3A05A3E2821EDB400855DFD /* GameSettings */ = {
-			isa = PBXGroup;
-			children = (
-				E3B4D33D281F22B40042AF06 /* GameSettingsViewController.swift */,
-				E3A05A402821EDDB00855DFD /* GameSettingsCoordinator.swift */,
-			);
-			path = GameSettings;
-			sourceTree = "<group>";
-		};
-		E3A05A3F2821EDBC00855DFD /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				E3B4D30B281EBCEE0042AF06 /* CategoriesViewController.swift */,
-				E3A05A422821EF0000855DFD /* CategoriesCoordinator.swift */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
-		E3A05A442821F25100855DFD /* NextRound */ = {
-			isa = PBXGroup;
-			children = (
-				E3B4D33F281F22CA0042AF06 /* NextRoundViewController.swift */,
-				E3A05A452821F26A00855DFD /* NextRoundController.swift */,
-			);
-			path = NextRound;
 			sourceTree = "<group>";
 		};
 		E3B4D2E6281EB29E0042AF06 = {
@@ -226,7 +184,9 @@
 			isa = PBXGroup;
 			children = (
 				E3B4D348281F332E0042AF06 /* Core */,
-				E3B4D34A281F337E0042AF06 /* Other */,
+				E3A05A322821DF9100855DFD /* Menu */,
+				E3A05A232821C7A300855DFD /* Rules */,
+				E3FF9B8728230480003FAA9E /* Preparations */,
 				E3B4D349281F33720042AF06 /* Game */,
 			);
 			path = ViewControllers;
@@ -297,10 +257,7 @@
 		E3B4D349281F33720042AF06 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				E3A05A3B2821E18800855DFD /* Teams */,
-				E3A05A3E2821EDB400855DFD /* GameSettings */,
-				E3A05A3F2821EDBC00855DFD /* Categories */,
-				E3A05A442821F25100855DFD /* NextRound */,
+				E3B4D33F281F22CA0042AF06 /* NextRoundViewController.swift */,
 				E3B4D30D281EBD4A0042AF06 /* GameViewController.swift */,
 				E3B4D341281F23000042AF06 /* ResultsViewController.swift */,
 				E3B4D343281F23060042AF06 /* WinnerViewController.swift */,
@@ -308,18 +265,10 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
-		E3B4D34A281F337E0042AF06 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				E3A05A322821DF9100855DFD /* Menu */,
-				E3A05A232821C7A300855DFD /* Rules */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		E3B4D34F281F54090042AF06 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				E3FF9B922823235F003FAA9E /* VCProtocols.swift */,
 				E3B4D350281F54100042AF06 /* Factory */,
 			);
 			path = Helper;
@@ -331,6 +280,16 @@
 				E3B4D34D281F54050042AF06 /* ComponentsFactory.swift */,
 			);
 			path = Factory;
+			sourceTree = "<group>";
+		};
+		E3FF9B8728230480003FAA9E /* Preparations */ = {
+			isa = PBXGroup;
+			children = (
+				E3B4D33D281F22B40042AF06 /* GameSettingsViewController.swift */,
+				E3B4D30B281EBCEE0042AF06 /* CategoriesViewController.swift */,
+				E3B4D33B281F229E0042AF06 /* TeamsViewController.swift */,
+			);
+			path = Preparations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,29 +403,26 @@
 				E3B4D34E281F54050042AF06 /* ComponentsFactory.swift in Sources */,
 				E3A05A312821DD2800855DFD /* MainCoordinator.swift in Sources */,
 				6F88ED47282165760058EAD9 /* GameBrain.swift in Sources */,
+				E3FF9B86282303F6003FAA9E /* GameCoordinator.swift in Sources */,
 				E3B4D30E281EBD4A0042AF06 /* GameViewController.swift in Sources */,
 				E3B4D308281EBB2A0042AF06 /* MenuViewController.swift in Sources */,
 				E3B4D340281F22CA0042AF06 /* NextRoundViewController.swift in Sources */,
-				E3A05A382821E17D00855DFD /* RulesCoordinator.swift in Sources */,
 				E3B4D2F3281EB29E0042AF06 /* AppDelegate.swift in Sources */,
 				E3B4D33C281F229E0042AF06 /* TeamsViewController.swift in Sources */,
-				E3A05A2F2821DCDB00855DFD /* MainBaseCoordinator .swift in Sources */,
 				E3B4D30A281EBCC40042AF06 /* RulesViewController.swift in Sources */,
-				E3A05A462821F26A00855DFD /* NextRoundController.swift in Sources */,
 				E3B4D310281EBE190042AF06 /* JokeService.swift in Sources */,
-				E3A05A2C2821DBA100855DFD /* BaseCoordinator.swift in Sources */,
-				E3A05A362821E04700855DFD /* MenuCoordinator.swift in Sources */,
+				E3A05A2C2821DBA100855DFD /* Coordinator.swift in Sources */,
 				E3B4D347281F332B0042AF06 /* NavigationController.swift in Sources */,
-				E3A05A412821EDDB00855DFD /* GameSettingsCoordinator.swift in Sources */,
 				E3B4D2F5281EB29E0042AF06 /* SceneDelegate.swift in Sources */,
 				A5101DF12821783500EDCB5F /* RuleTableViewCell.swift in Sources */,
-				E3A05A3A2821E18500855DFD /* TeamsCoordinator.swift in Sources */,
 				E3A05A272821C94800855DFD /* CategoriesData.swift in Sources */,
 				E3B4D30C281EBCEE0042AF06 /* CategoriesViewController.swift in Sources */,
-				E3A05A432821EF0000855DFD /* CategoriesCoordinator.swift in Sources */,
 				E3B4D33E281F22B40042AF06 /* GameSettingsViewController.swift in Sources */,
+				E3FF9B89282304CF003FAA9E /* PreparationsCoordinator.swift in Sources */,
 				E3B4D342281F23000042AF06 /* ResultsViewController.swift in Sources */,
+				E3FF9B932823235F003FAA9E /* VCProtocols.swift in Sources */,
 				E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */,
+				E3FF9B8B28230572003FAA9E /* RulesCoordinator.swift in Sources */,
 				E3B4D313281EBEAE0042AF06 /* GameService.swift in Sources */,
 				6F88ED4328211EE80058EAD9 /* (null) in Sources */,
 				E3A05A292821D93C00855DFD /* ActionsData.swift in Sources */,

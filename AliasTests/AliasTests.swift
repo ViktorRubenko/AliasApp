@@ -10,7 +10,7 @@ import XCTest
 
 class AliasTests: XCTestCase {
     
-    var sut: GameServiceProtocol!
+    var sut: GameBaseService!
     var score = 0
     var getAction = false
 
@@ -58,15 +58,15 @@ class AliasTests: XCTestCase {
 
 extension AliasTests: GameServiceDelegate {
     
-    func handleWord(gameService: GameServiceProtocol, word: String, action: String?) {
+    func handleWord(gameService: GameBaseService, word: String, action: String?) {
         
     }
     
-    func timerDidUpdate(gameService: GameServiceProtocol, seconds: Int) {
+    func timerDidUpdate(gameService: GameBaseService, seconds: Int) {
         
     }
     
-    func roundDidEnd(gameService: GameServiceProtocol, teamName: String, roundPoints: Int, roundResults: [String : Bool]) {
+    func roundDidEnd(gameService: GameBaseService, teamName: String, roundPoints: Int, roundResults: [String : Bool]) {
         
     }
     
