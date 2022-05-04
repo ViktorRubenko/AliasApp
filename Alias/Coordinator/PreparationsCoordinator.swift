@@ -21,6 +21,7 @@ class PreparationsCoordinator: PreparationsBaseCoordinator {
     var rootViewController: UIViewController?
     var parentCoordinator: MainBaseCoordinator?
     
+    
     func start() -> UIViewController {
         TeamsViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
     }
