@@ -123,7 +123,7 @@ extension TeamsViewController: UITableViewDelegate, UITableViewDataSource {
         footerLabel.text = """
         Минимальное количество команд: 2
         Чтобы добавить команду - нажмите кнопку "Добавить"
-        Чтобы удалить команду - свапните её влево
+        Чтобы удалить или переименовать команду - свапните её влево
         """
         footerLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -142,9 +142,8 @@ extension TeamsViewController: UITableViewDelegate, UITableViewDataSource {
 extension TeamsViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
-        guard gameService.teams.count > 2 else { return nil }
         
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+        let deleteAction = SwipeAction(style: .destructive, title: "Удалить") { action, indexPath in
             self.gameService.deleteTeam(at: indexPath.row)
             self.tableView.performBatchUpdates {
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -152,6 +151,22 @@ extension TeamsViewController: SwipeTableViewCellDelegate {
 
         }
         
-        return [deleteAction]
+        let editAction = SwipeAction(style: .default, title: "Переименовать") { action, indexPath in
+            let alert = UIAlertController(title: "Переименовать", message: nil, preferredStyle: .alert)
+            alert.addTextField { textField in
+                textField.placeholder = self.gameService.teams[indexPath.row].name
+            }
+            alert.addAction(UIAlertAction(title: "Изменить", style: .destructive, handler: { _ in
+                guard let text = alert.textFields?.first?.text, !text.isEmpty else { return }
+                self.gameService.renameTeam(index: indexPath.row, name: text)
+                self.tableView.performBatchUpdates {
+                    self.tableView.reloadRows(at: [indexPath], with: .middle)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+        
+        return gameService.teams.count > 2 ? [editAction, deleteAction] : [editAction]
     }
 }
