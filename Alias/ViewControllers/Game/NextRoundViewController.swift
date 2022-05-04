@@ -7,10 +7,10 @@
 
 import UIKit
 
-class NextRoundViewController: UIViewController {
-    
-    private let gameService: GameServiceProtocol!
-    private var componentsFactory: ComponentsBaseFactory!
+class NextRoundViewController: UIViewController, GameBaseViewController {
+    weak var coordinator: GameBaseCoordinator?
+    let gameService: GameBaseService!
+    var componentsFactory: ComponentsBaseFactory!
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,8 @@ class NextRoundViewController: UIViewController {
     }()
     private var teamsStackViewHeightConstraint: NSLayoutConstraint!
     
-    init(gameService: GameServiceProtocol, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
+        self.coordinator = coordinator
         self.gameService = gameService
         self.componentsFactory = componentsFactory
         super.init(nibName: nil, bundle: nil)
@@ -93,14 +94,14 @@ class NextRoundViewController: UIViewController {
         contentView.addSubview(nextRoundTeamLabel)
         contentView.addSubview(teamsStackView)
         
-        gameService.roundResults.forEach {
+        gameService.teams.forEach {
             let innerStackView = UIStackView()
             innerStackView.axis = .horizontal
             innerStackView.distribution = .fillProportionally
             let teamLabel = componentsFactory.roundTeamListLabel()
             let teamScoreLabel = componentsFactory.roundTeamScoreListLabel()
-            teamLabel.text = "\($0):"
-            teamScoreLabel.text = "\($1)"
+            teamLabel.text = "\($0.name):"
+            teamScoreLabel.text = "\($0.score)"
             innerStackView.addArrangedSubview(teamLabel)
             innerStackView.addArrangedSubview(teamScoreLabel)
             self.teamsStackView.addArrangedSubview(innerStackView)
@@ -152,7 +153,6 @@ class NextRoundViewController: UIViewController {
     }
     
     @objc private func didTapBottomButton() {
-        let vc = GameViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        coordinator?.goToGame()
     }
 }

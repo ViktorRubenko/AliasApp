@@ -7,7 +7,7 @@
 
 import Foundation
 
-class GameBrain: GameServiceProtocol {
+class GameBrain: GameBaseService {
     
     static let shared = GameBrain()
     
@@ -137,11 +137,7 @@ class GameBrain: GameServiceProtocol {
     }
     
     func endRound() {
-        delegate?.roundDidEnd(
-            gameService: self,
-            teamName: currentTeam!.name,
-            roundPoints: roundPoints,
-            roundResults: roundResults)
+        delegate?.roundDidEnd(gameService: self)
         usedWords[usedWords.count - 1].append(currentWord)
         var teamIndex = teams.firstIndex(where: {$0 == currentTeam})!
         teams[teamIndex].score += roundPoints
