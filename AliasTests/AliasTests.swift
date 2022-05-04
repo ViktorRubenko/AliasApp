@@ -57,18 +57,20 @@ class AliasTests: XCTestCase {
 }
 
 extension AliasTests: GameServiceDelegate {
+    func roundDidEnd(gameService: GameBaseService) {
+        
+    }
+    
+    func gameDidEnd(gameService: GameBaseService) {
+        
+    }
     
     func handleWord(gameService: GameBaseService, word: String, action: String?) {
-        
+        getAction = action != nil
     }
     
     func timerDidUpdate(gameService: GameBaseService, seconds: Int) {
         
     }
-    
-    func roundDidEnd(gameService: GameBaseService, teamName: String, roundPoints: Int, roundResults: [String : Bool]) {
-        
-    }
-    
     
 }
