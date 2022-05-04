@@ -49,6 +49,10 @@ class GameBrain: GameBaseService {
         }
     }
     
+    func renameTeam(index: Int, name: String) {
+        teams[index].name = name
+    }
+    
     func setRounds(_ rounds: Int) {
         totalRounds = rounds
     }

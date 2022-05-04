@@ -8,7 +8,7 @@
 import Foundation
 
 struct TeamModel: Equatable {
-    let name: String
+    var name: String
     var score: Int
 }
 
@@ -32,6 +32,7 @@ protocol GameBaseService: AnyObject {
     
     func addTeam(name: String)
     func deleteTeam(at: Int)
+    func renameTeam(index: Int, name: String)
     func setRounds(_ rounds: Int)
     func setSeconds(_ seconds: Int)
     func selectCategory(_ index: Int)
