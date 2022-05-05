@@ -23,7 +23,7 @@ class GameBrain: GameBaseService {
         TeamModel(name: "Хищники", score: 0)
     ]
     private(set) var currentTeam: TeamModel? = nil
-    let categories: [CategoryModel] = CategoriesDict.compactMap {
+    let categories: [CategoryModel] = CategoriesDict.sorted(by: { $0.value.count > $1.value.count }).compactMap {
         CategoryModel(name: $0, words: $1)
     }
     private(set) var totalTimerSeconds: Int = 4
