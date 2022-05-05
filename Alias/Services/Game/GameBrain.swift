@@ -27,7 +27,9 @@ class GameBrain: GameBaseService {
         CategoryModel(name: $0, words: $1)
     }
     private(set) var totalTimerSeconds: Int = 60
-    private(set) var gameDidEnd: Bool = false
+    var gameDidEnd: Bool {
+        subRoundsPlayed == teams.count * totalRounds
+    }
     
     private var withAction: Bool = false
     private var currentWord: String = ""
@@ -68,7 +70,6 @@ class GameBrain: GameBaseService {
     }
     
     func startNewGame() {
-        gameDidEnd = false
         subRoundsPlayed = 0
         currentTeam = teams.first
         guard let currentCategory = currentCategory else {
@@ -99,7 +100,7 @@ class GameBrain: GameBaseService {
             self.secondsRemaining -= 1
             self.delegate?.timerDidUpdate(gameService: self, seconds: self.secondsRemaining)
             if self.secondsRemaining == 0 {
-                self.endRound()
+                self.delegate?.roundDidEnd(gameService: self)
                 timer.invalidate()
             }
         }
@@ -146,13 +147,11 @@ class GameBrain: GameBaseService {
     }
     
     func endRound() {
-        delegate?.roundDidEnd(gameService: self)
         usedWords[usedWords.count - 1].append(currentWord)
         var teamIndex = teams.firstIndex(where: {$0 == currentTeam})!
         teams[teamIndex].score += roundPoints
         teamIndex = (teamIndex < teams.count-1) ? teamIndex + 1 : 0
         currentTeam = teams[teamIndex]
         subRoundsPlayed += 1
-        gameDidEnd = subRoundsPlayed == teams.count * totalRounds
     }
 }
