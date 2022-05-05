@@ -19,9 +19,29 @@ protocol ComponentsBaseFactory {
     func numberOfRoundsCountLabel() -> UILabel
     func bottomButtonContainer() -> UIView
     func logoImageView() -> UIImageView
+    func wordResultLabel() -> UILabel
+    func wordResultImageView(guessed: Bool) -> UIImageView
 }
 
 struct ComponentsFactory: ComponentsBaseFactory {
+    
+    func wordResultImageView(guessed: Bool) -> UIImageView {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(systemName: guessed ? "hand.thumbsup" : "hand.thumbsdown")
+        iv.tintColor = guessed ? Constants.Colors.greenColor : Constants.Colors.redColor
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }
+    
+    func wordResultLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = Constants.Colors.textColor
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
     func logoImageView() -> UIImageView {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
