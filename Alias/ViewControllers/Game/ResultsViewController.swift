@@ -7,11 +7,7 @@
 
 import UIKit
 
-class ResultsViewController: UIViewController, GameBaseViewController {
-
-    var gameService: GameBaseService!
-    var componentsFactory: ComponentsBaseFactory!
-    weak var coordinator: GameBaseCoordinator?
+class ResultsViewController: InitialGameViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -39,17 +35,6 @@ class ResultsViewController: UIViewController, GameBaseViewController {
         return stackView
     }()
     private var resultsStackViewHeightConstraint: NSLayoutConstraint!
-    
-    init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
-        self.coordinator = coordinator
-        self.gameService = gameService
-        self.componentsFactory = componentsFactory
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,11 +117,9 @@ class ResultsViewController: UIViewController, GameBaseViewController {
         
     }
     
-    private func setupNavBar() {
+    override func setupNavBar() {
         title = "Результаты раунда"
-        let backButton = UIBarButtonItem()
-        backButton.title = "Меню"
-        navigationItem.backBarButtonItem = backButton
+        super.setupNavBar()
     }
     
     @objc private func didTapBottomButton() {

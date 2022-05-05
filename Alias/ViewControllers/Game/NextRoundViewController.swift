@@ -7,10 +7,8 @@
 
 import UIKit
 
-class NextRoundViewController: UIViewController, GameBaseViewController {
-    weak var coordinator: GameBaseCoordinator?
-    let gameService: GameBaseService!
-    var componentsFactory: ComponentsBaseFactory!
+class NextRoundViewController: InitialGameViewController {
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,17 +36,6 @@ class NextRoundViewController: UIViewController, GameBaseViewController {
         return stackView
     }()
     private var teamsStackViewHeightConstraint: NSLayoutConstraint!
-    
-    init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
-        self.coordinator = coordinator
-        self.gameService = gameService
-        self.componentsFactory = componentsFactory
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,11 +118,9 @@ class NextRoundViewController: UIViewController, GameBaseViewController {
             equalToConstant: CGFloat(teamsStackView.subviews.count * 44))
     }
     
-    private func setupNavBar() {
+    override func setupNavBar() {
         title = "Раунд"
-        let backButton = UIBarButtonItem()
-        backButton.title = "Меню"
-        navigationItem.backBarButtonItem = backButton
+        super.setupNavBar()
     }
     
     @objc private func didTapBottomButton() {

@@ -7,22 +7,7 @@
 
 import UIKit
 
-class WinnerViewController: UIViewController, GameBaseViewController {
-
-    var gameService: GameBaseService!
-    var componentsFactory: ComponentsBaseFactory!
-    weak var coordinator: GameBaseCoordinator?
-    
-    init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
-        self.coordinator = coordinator
-        self.gameService = gameService
-        self.componentsFactory = componentsFactory
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+class WinnerViewController: InitialGameViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

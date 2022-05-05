@@ -7,12 +7,8 @@
 
 import UIKit
 
-class GameViewController: UIViewController, GameBaseViewController {
+class GameViewController: InitialGameViewController {
 
-    var gameService: GameBaseService!
-    var componentsFactory: ComponentsBaseFactory!
-    weak var coordinator: GameBaseCoordinator?
-    
     private lazy var header: GameHeaderView = {
         let view = GameHeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -96,12 +92,8 @@ class GameViewController: UIViewController, GameBaseViewController {
         return stackView
     }()
     
-    init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
-        self.coordinator = coordinator
-        self.gameService = gameService
-        self.componentsFactory = componentsFactory
-        super.init(nibName: nil, bundle: nil)
-        
+    override init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
+        super.init(coordinator: coordinator, gameService: gameService, componentsFactory: componentsFactory)
         gameService.delegate = self
     }
     
@@ -173,11 +165,9 @@ class GameViewController: UIViewController, GameBaseViewController {
         ])
     }
     
-    private func setupNavBar() {
+    override func setupNavBar() {
+        super.setupNavBar()
         title = "Игра"
-        let backButton = UIBarButtonItem()
-        backButton.title = "Меню"
-        navigationItem.backBarButtonItem = backButton
     }
     
     private func updateUI() {
