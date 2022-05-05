@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import SwiftUI
 
-class CategoriesViewController: UIViewController, PreparationsBaseViewController {
+class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PreparationsBaseViewController {
     
     weak var coordinator: PreparationsBaseCoordinator?
     var componentsFactory: ComponentsBaseFactory!
     var gameService: GameBaseService!
+    
+    var tableView = UITableView()
     
     init(coordinator: PreparationsCoordinator, gameService: GameBaseService, componentsFactory: ComponentsFactory) {
         self.coordinator = coordinator
@@ -26,14 +29,77 @@ class CategoriesViewController: UIViewController, PreparationsBaseViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let button = UIButton(frame: CGRect(x: 200, y: 200, width: 100, height: 100))
-        button.setTitle("NextVC", for: .normal)
-        button.setTitleColor(.red, for: .normal)
-        view.addSubview(button)
-        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        
+        setupNavBar()
+        createTable()
+        setupUI()
+    }
+    
+    func setupUI() {
+        view.backgroundColor = Constants.Colors.mainBackgroundColor
+        
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
+        ])
+        
+    }
+    
+    func createTable() {
+        self.tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: CategoryTableViewCell.identifire)
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .clear
+        tableView.sectionHeaderHeight = 140
+    }
+    
+    func setupNavBar(){
+        title = "Категории"
     }
     
     @objc func didTap() {
         coordinator?.goToGameSettings()
+    }
+    
+    //MARK: - UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return CategoriesDict.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTableViewCell.identifire, for: indexPath) as! CategoryTableViewCell
+        
+        let key = gameService.categories[indexPath.row].name
+        cell.title.text = key
+        
+        var subTitle = ""
+        for index in 0...3 {
+            subTitle += "\(gameService.categories[indexPath.row].words[index]), "
+        }
+        cell.subTitle.text = String(subTitle.dropLast(2))
+        
+        //cell.image.image = UIImage(named: key) 
+        
+        return cell
+    }
+    
+    //MARK: - UITablewViewDelegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        gameService.selectCategory(indexPath.row)
+        didTap()
     }
 }
