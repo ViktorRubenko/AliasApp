@@ -29,6 +29,7 @@ protocol GameBaseService: AnyObject {
     var currentTeam: TeamModel? { get }
     var categories: [CategoryModel] { get }
     var totalTimerSeconds: Int { get }
+    var gameDidEnd: Bool { get }
     
     func addTeam(name: String)
     func deleteTeam(at: Int)
@@ -49,5 +50,4 @@ protocol GameServiceDelegate: AnyObject {
     func handleWord(gameService: GameBaseService, word: String, action: String?)
     func timerDidUpdate(gameService: GameBaseService, seconds: Int)
     func roundDidEnd(gameService: GameBaseService)
-    func gameDidEnd(gameService: GameBaseService)
 }
