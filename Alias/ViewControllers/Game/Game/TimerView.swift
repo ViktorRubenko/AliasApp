@@ -41,8 +41,8 @@ class TimerView: UIView {
         NSLayoutConstraint.activate([
             timerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
             timerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
-            timerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 6),
-            timerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6)
+            timerLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            widthAnchor.constraint(greaterThanOrEqualTo: timerLabel.widthAnchor)
         ])
     }
     

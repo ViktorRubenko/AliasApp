@@ -1,5 +1,5 @@
 //
-//  GuessedHeaderView.swift
+//  GameHeaderView.swift
 //  Alias
 //
 //  Created by Victor Rubenko on 05.05.2022.
@@ -64,20 +64,18 @@ class GameHeaderView: UIView {
         container.addSubview(guessedWordPlaceholder)
         
         NSLayoutConstraint.activate([
-            guessedWordLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 5),
+            guessedWordLabel.topAnchor.constraint(equalTo: container.topAnchor),
             guessedWordLabel.widthAnchor.constraint(equalTo: widthAnchor),
             guessedWordLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             
-            guessedWordPlaceholder.topAnchor.constraint(equalTo: guessedWordLabel.bottomAnchor, constant: 2),
+            guessedWordPlaceholder.topAnchor.constraint(equalTo: guessedWordLabel.bottomAnchor, constant: -5),
             guessedWordPlaceholder.widthAnchor.constraint(equalTo: widthAnchor),
             guessedWordPlaceholder.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            guessedWordPlaceholder.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -5),
+            guessedWordPlaceholder.bottomAnchor.constraint(lessThanOrEqualTo: container.bottomAnchor),
             
             container.centerXAnchor.constraint(equalTo: centerXAnchor),
             container.centerYAnchor.constraint(equalTo: centerYAnchor),
-            container.widthAnchor.constraint(equalTo: guessedWordLabel.widthAnchor),
-            
-            heightAnchor.constraint(greaterThanOrEqualTo: container.heightAnchor)
+            container.widthAnchor.constraint(equalTo: widthAnchor),
         ])
     }
 }
