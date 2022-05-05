@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F88ED4328211EE80058EAD9 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		6F88ED4328211EE80058EAD9 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		6F88ED47282165760058EAD9 /* GameBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88ED46282165760058EAD9 /* GameBrain.swift */; };
 		A5101DF12821783500EDCB5F /* RuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5101DF02821783500EDCB5F /* RuleTableViewCell.swift */; };
 		AE4CB4077AF59CCD1906D4B8 /* Pods_Alias.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB0B5093EB43E6BE58FC4D8 /* Pods_Alias.framework */; };
 		BE73809F532376BC7496309B /* Pods_AliasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 403CE3B167E85EE967ED65F0 /* Pods_AliasTests.framework */; };
+		E378F4112823DF2D0067342A /* GameHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378F4102823DF2D0067342A /* GameHeaderView.swift */; };
+		E378F4132823E8ED0067342A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378F4122823E8ED0067342A /* TimerView.swift */; };
+		E378F415282402950067342A /* GameFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378F414282402950067342A /* GameFooterView.swift */; };
 		E3A05A1D2821C11600855DFD /* AliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A1C2821C11600855DFD /* AliasTests.swift */; };
 		E3A05A272821C94800855DFD /* CategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A262821C94800855DFD /* CategoriesData.swift */; };
 		E3A05A292821D93C00855DFD /* ActionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A282821D93C00855DFD /* ActionsData.swift */; };
@@ -59,6 +62,9 @@
 		6F88ED46282165760058EAD9 /* GameBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBrain.swift; sourceTree = "<group>"; };
 		9FB0B5093EB43E6BE58FC4D8 /* Pods_Alias.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alias.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5101DF02821783500EDCB5F /* RuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleTableViewCell.swift; sourceTree = "<group>"; };
+		E378F4102823DF2D0067342A /* GameHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHeaderView.swift; sourceTree = "<group>"; };
+		E378F4122823E8ED0067342A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		E378F414282402950067342A /* GameFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFooterView.swift; sourceTree = "<group>"; };
 		E3A05A1A2821C11600855DFD /* AliasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AliasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A05A1C2821C11600855DFD /* AliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasTests.swift; sourceTree = "<group>"; };
 		E3A05A262821C94800855DFD /* CategoriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesData.swift; sourceTree = "<group>"; };
@@ -129,8 +135,18 @@
 				330BFDDCC89CD11AB216AD7C /* Pods-AliasTests.debug.xcconfig */,
 				2D79AB5A4AA0750486168895 /* Pods-AliasTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E378F40F2823DF070067342A /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				E3B4D30D281EBD4A0042AF06 /* GameViewController.swift */,
+				E378F4122823E8ED0067342A /* TimerView.swift */,
+				E378F4102823DF2D0067342A /* GameHeaderView.swift */,
+				E378F414282402950067342A /* GameFooterView.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 		E3A05A1B2821C11600855DFD /* AliasTests */ = {
@@ -291,7 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				E3B4D33F281F22CA0042AF06 /* NextRoundViewController.swift */,
-				E3B4D30D281EBD4A0042AF06 /* GameViewController.swift */,
+				E378F40F2823DF070067342A /* Game */,
 				E3B4D341281F23000042AF06 /* ResultsViewController.swift */,
 				E3B4D343281F23060042AF06 /* WinnerViewController.swift */,
 			);
@@ -507,6 +523,7 @@
 				E3B4D30E281EBD4A0042AF06 /* GameViewController.swift in Sources */,
 				E3B4D308281EBB2A0042AF06 /* MenuViewController.swift in Sources */,
 				E3B4D340281F22CA0042AF06 /* NextRoundViewController.swift in Sources */,
+				E378F4132823E8ED0067342A /* TimerView.swift in Sources */,
 				E3B4D2F3281EB29E0042AF06 /* AppDelegate.swift in Sources */,
 				E3B4D33C281F229E0042AF06 /* TeamsViewController.swift in Sources */,
 				E3B4D30A281EBCC40042AF06 /* RulesViewController.swift in Sources */,
@@ -524,9 +541,11 @@
 				E3B4D344281F23060042AF06 /* WinnerViewController.swift in Sources */,
 				E3FF9B8B28230572003FAA9E /* RulesCoordinator.swift in Sources */,
 				E3B4D313281EBEAE0042AF06 /* GameService.swift in Sources */,
-				6F88ED4328211EE80058EAD9 /* BuildFile in Sources */,
+				E378F4112823DF2D0067342A /* GameHeaderView.swift in Sources */,
+				6F88ED4328211EE80058EAD9 /* (null) in Sources */,
 				E3A05A292821D93C00855DFD /* ActionsData.swift in Sources */,
 				E3B4D338281F1AD80042AF06 /* Constants.swift in Sources */,
+				E378F415282402950067342A /* GameFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
