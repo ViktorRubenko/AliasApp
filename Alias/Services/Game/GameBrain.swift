@@ -17,7 +17,7 @@ class GameBrain: GameBaseService {
     private(set) var points: Int = 0
     private(set) var skippedWords: Int = 0
     private(set) var totalRounds: Int = 4
-    private(set) var roundResults: [String : Bool] = [:]
+    private(set) var roundResults: [(word: String, guessed: Bool)] = []
     private(set) var teams: [TeamModel] = [
         TeamModel(name: "Травоядные", score: 0),
         TeamModel(name: "Хищники", score: 0)
@@ -70,6 +70,7 @@ class GameBrain: GameBaseService {
     }
     
     func startNewGame() {
+        currentRound = 1
         subRoundsPlayed = 0
         for i in 0..<teams.count {
             teams[i].score = 0
@@ -88,7 +89,7 @@ class GameBrain: GameBaseService {
         if currentRound > totalRounds {
             fatalError()
         }
-        roundResults = [:]
+        roundResults.removeAll()
         points = 0
         skippedWords = 0
         secondsRemaining = totalTimerSeconds
@@ -108,19 +109,18 @@ class GameBrain: GameBaseService {
     
     func guessedWord() {
         points += withAction ? 3 : 1
-        roundResults[currentWord] = true
+        roundResults.append((word: currentWord, guessed: true))
         nextWord()
     }
     
     func skipWord() {
         points -= points > 0 ? 1 : 0
         skippedWords += 1
-        roundResults[currentWord] = false
+        roundResults.append((word: currentWord, guessed: false))
         nextWord()
     }
     
     func resetTeamRound() {
-        roundResults = [:]
         timer?.invalidate()
     }
     

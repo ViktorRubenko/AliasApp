@@ -24,7 +24,7 @@ protocol GameBaseService: AnyObject {
     var points: Int { get }
     var skippedWords: Int { get }
     var totalRounds: Int { get }
-    var roundResults: [String: Bool] { get }
+    var roundResults: [(word: String, guessed: Bool)] { get }
     var teams: [TeamModel] { get }
     var currentTeam: TeamModel? { get }
     var categories: [CategoryModel] { get }
