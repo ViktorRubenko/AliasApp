@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GuessedHeaderView: UIView {
+class GameHeaderView: UIView {
     
     var guessedValue = 0 {
         didSet {
@@ -18,7 +18,7 @@ class GuessedHeaderView: UIView {
     private lazy var guessedWordLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 55, weight: .bold)
+        label.font = .systemFont(ofSize: 65, weight: .bold)
         label.textAlignment = .center
         label.text = "0"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -64,14 +64,14 @@ class GuessedHeaderView: UIView {
         container.addSubview(guessedWordPlaceholder)
         
         NSLayoutConstraint.activate([
-            guessedWordLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
+            guessedWordLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 5),
             guessedWordLabel.widthAnchor.constraint(equalTo: widthAnchor),
             guessedWordLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             
-            guessedWordPlaceholder.topAnchor.constraint(equalTo: guessedWordLabel.bottomAnchor, constant: 5),
+            guessedWordPlaceholder.topAnchor.constraint(equalTo: guessedWordLabel.bottomAnchor, constant: 2),
             guessedWordPlaceholder.widthAnchor.constraint(equalTo: widthAnchor),
             guessedWordPlaceholder.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            guessedWordPlaceholder.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
+            guessedWordPlaceholder.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -5),
             
             container.centerXAnchor.constraint(equalTo: centerXAnchor),
             container.centerYAnchor.constraint(equalTo: centerYAnchor),
