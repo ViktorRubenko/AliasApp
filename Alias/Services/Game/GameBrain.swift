@@ -14,7 +14,7 @@ class GameBrain: GameBaseService {
     weak var delegate: GameServiceDelegate?
     
     private(set) var currentRound: Int = 1
-    private(set) var roundPoints: Int = 0
+    private(set) var points: Int = 0
     private(set) var skippedWords: Int = 0
     private(set) var totalRounds: Int = 4
     private(set) var roundResults: [String : Bool] = [:]
@@ -26,7 +26,7 @@ class GameBrain: GameBaseService {
     let categories: [CategoryModel] = CategoriesDict.compactMap {
         CategoryModel(name: $0, words: $1)
     }
-    private(set) var totalTimerSeconds: Int = 60
+    private(set) var totalTimerSeconds: Int = 4
     var gameDidEnd: Bool {
         subRoundsPlayed == teams.count * totalRounds
     }
@@ -71,17 +71,25 @@ class GameBrain: GameBaseService {
     
     func startNewGame() {
         subRoundsPlayed = 0
+        for i in 0..<teams.count {
+            teams[i].score = 0
+        }
+        roundResults.removeAll()
+        usedWords.removeAll()
+        timer?.invalidate()
         currentTeam = teams.first
         guard let currentCategory = currentCategory else {
             return
         }
-        
         shuffledWords = currentCategory.words.shuffled()
     }
     
-    func startRound() {
+    func startCurrentTeamRound() {
+        if currentRound > totalRounds {
+            fatalError()
+        }
         roundResults = [:]
-        roundPoints = 0
+        points = 0
         skippedWords = 0
         secondsRemaining = totalTimerSeconds
         
@@ -95,40 +103,58 @@ class GameBrain: GameBaseService {
         currentWord = shuffledWords.removeFirst()
         delegate?.handleWord(gameService: self, word: currentWord, action: nil)
         
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] (timer) in
-            guard let self = self else {timer.invalidate(); return}
-            self.secondsRemaining -= 1
-            self.delegate?.timerDidUpdate(gameService: self, seconds: self.secondsRemaining)
-            if self.secondsRemaining == 0 {
-                self.delegate?.roundDidEnd(gameService: self)
-                timer.invalidate()
-            }
-        }
+        startTimer()
     }
     
     func guessedWord() {
-        roundPoints += withAction ? 3 : 1
+        points += withAction ? 3 : 1
         roundResults[currentWord] = true
         nextWord()
     }
     
     func skipWord() {
-        roundPoints -= roundPoints > 0 ? 1 : 0
+        points -= points > 0 ? 1 : 0
         skippedWords += 1
         roundResults[currentWord] = false
         nextWord()
     }
     
-    func resetRound() {
+    func resetTeamRound() {
         roundResults = [:]
         timer?.invalidate()
     }
     
-    func endGame() {
-        teams.removeAll()
-        roundResults.removeAll()
-        usedWords.removeAll()
-        timer?.invalidate()
+    func endTeamRound() {
+        usedWords[usedWords.count - 1].append(currentWord)
+        var teamIndex = teams.firstIndex(where: {$0 == currentTeam})!
+        teams[teamIndex].score += points
+        teamIndex = (teamIndex < teams.count-1) ? teamIndex + 1 : 0
+        currentTeam = teams[teamIndex]
+        if teamIndex == 0 {
+            currentRound += 1
+        }
+    }
+}
+
+private extension GameBrain {
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] (timer) in
+            guard let self = self else {timer.invalidate(); return}
+            self.secondsRemaining -= 1
+            self.delegate?.timerDidUpdate(gameService: self, seconds: self.secondsRemaining)
+            if self.secondsRemaining == 0 {
+                self.subRoundsPlayed += 1
+                self.delegate?.teamRoundDidEnd(gameService: self)
+                timer.invalidate()
+            }
+        }
+    }
+    
+    func checkSuffledWords() {
+        if shuffledWords.count < 1 {
+            shuffledWords += usedWords.removeFirst()
+            shuffledWords.shuffle()
+        }
     }
     
     func nextWord() {
@@ -137,21 +163,5 @@ class GameBrain: GameBaseService {
         withAction = [true, false, false, false].randomElement()!
         delegate?.handleWord(gameService: self, word: currentWord, action: withAction ? actions.randomElement()! : nil)
         checkSuffledWords()
-    }
-    
-    private func checkSuffledWords() {
-        if shuffledWords.count < 1 {
-            shuffledWords += usedWords.removeFirst()
-            shuffledWords.shuffle()
-        }
-    }
-    
-    func endRound() {
-        usedWords[usedWords.count - 1].append(currentWord)
-        var teamIndex = teams.firstIndex(where: {$0 == currentTeam})!
-        teams[teamIndex].score += roundPoints
-        teamIndex = (teamIndex < teams.count-1) ? teamIndex + 1 : 0
-        currentTeam = teams[teamIndex]
-        subRoundsPlayed += 1
     }
 }

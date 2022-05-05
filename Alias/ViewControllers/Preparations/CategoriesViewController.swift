@@ -34,6 +34,7 @@ class CategoriesViewController: UIViewController, PreparationsBaseViewController
     }
     
     @objc func didTap() {
+        gameService.selectCategory(0)
         coordinator?.goToGameSettings()
     }
 }

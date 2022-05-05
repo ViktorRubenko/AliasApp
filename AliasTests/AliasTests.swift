@@ -33,7 +33,7 @@ class AliasTests: XCTestCase {
         sut.delegate = self
         sut.selectCategory(0)
         sut.startNewGame()
-        sut.startRound()
+        sut.startCurrentTeamRound()
         
         score += getAction ? 3 : 1
         sut.guessedWord()
@@ -47,17 +47,17 @@ class AliasTests: XCTestCase {
         score -= 1
         sut.skipWord()
         
-        XCTAssertEqual(sut.roundPoints, score)
+        XCTAssertEqual(sut.points, score)
         XCTAssertEqual(sut.roundResults.reduce(0, { partialResult, element in
             partialResult + (element.value ? 1 : 0)
         }), 3)
         
-        sut.resetRound()
+        sut.resetTeamRound()
     }
 }
 
 extension AliasTests: GameServiceDelegate {
-    func roundDidEnd(gameService: GameBaseService) {
+    func teamRoundDidEnd(gameService: GameBaseService) {
         
     }
     

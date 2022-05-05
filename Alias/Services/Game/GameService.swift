@@ -21,7 +21,7 @@ protocol GameBaseService: AnyObject {
     var delegate: GameServiceDelegate? {get set}
     
     var currentRound: Int { get }
-    var roundPoints: Int { get }
+    var points: Int { get }
     var skippedWords: Int { get }
     var totalRounds: Int { get }
     var roundResults: [String: Bool] { get }
@@ -39,15 +39,15 @@ protocol GameBaseService: AnyObject {
     func selectCategory(_ index: Int)
     
     func startNewGame()
-    func startRound()
     func guessedWord()
     func skipWord()
-    func resetRound()
-    func endGame()
+    func startCurrentTeamRound()
+    func resetTeamRound()
+    func endTeamRound()
 }
 
 protocol GameServiceDelegate: AnyObject {
     func handleWord(gameService: GameBaseService, word: String, action: String?)
     func timerDidUpdate(gameService: GameBaseService, seconds: Int)
-    func roundDidEnd(gameService: GameBaseService)
+    func teamRoundDidEnd(gameService: GameBaseService)
 }

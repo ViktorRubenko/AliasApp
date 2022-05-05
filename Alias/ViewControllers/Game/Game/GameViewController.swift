@@ -21,7 +21,7 @@ class GameViewController: UIViewController, GameBaseViewController {
     
     private lazy var footer: GameFooterView = {
         let view = GameFooterView(frame: .zero) { [weak self] in
-            self?.gameService.resetRound()
+            self?.gameService.resetTeamRound()
             self?.coordinator?.goToNextRound()
         }
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -117,7 +117,7 @@ class GameViewController: UIViewController, GameBaseViewController {
         super.viewDidLoad()
         setupViews()
         setupNavBar()
-        gameService.startRound()
+        gameService.startCurrentTeamRound()
         updateUI()
     }
     
@@ -175,10 +175,13 @@ class GameViewController: UIViewController, GameBaseViewController {
     
     private func setupNavBar() {
         title = "Игра"
+        let backButton = UIBarButtonItem()
+        backButton.title = "Меню"
+        navigationItem.backBarButtonItem = backButton
     }
     
     private func updateUI() {
-        header.guessedValue = gameService.roundPoints
+        header.guessedValue = gameService.points
         footer.skipValue = gameService.skippedWords
     }
     
@@ -204,7 +207,7 @@ extension GameViewController: GameServiceDelegate {
         timerView.timerValue = seconds
     }
     
-    func roundDidEnd(gameService: GameBaseService) {
+    func teamRoundDidEnd(gameService: GameBaseService) {
         coordinator?.goToResults()
     }
 }

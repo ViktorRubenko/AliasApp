@@ -54,10 +54,7 @@ class NextRoundViewController: UIViewController, GameBaseViewController {
         super.viewDidLoad()
         setupViews()
         setupNavBar()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         roundLabel.text = "Раунд \(gameService.currentRound) / \(gameService.totalRounds)"
         nextRoundTeamLabel.text = gameService.currentTeam?.name
     }
@@ -121,13 +118,13 @@ class NextRoundViewController: UIViewController, GameBaseViewController {
             roundLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             roundLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
-            teamsStackView.topAnchor.constraint(equalTo: roundLabel.bottomAnchor, constant: 150),
-            teamsStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7),
-            teamsStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            
             nextRoundTeamLabel.topAnchor.constraint(equalTo: roundLabel.bottomAnchor, constant: 10),
             nextRoundTeamLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             nextRoundTeamLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            teamsStackView.topAnchor.constraint(equalTo: nextRoundTeamLabel.bottomAnchor, constant: 20),
+            teamsStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7),
+            teamsStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
         ])
         
         teamsStackViewHeightConstraint = teamsStackView.heightAnchor.constraint(
@@ -136,6 +133,9 @@ class NextRoundViewController: UIViewController, GameBaseViewController {
     
     private func setupNavBar() {
         title = "Раунд"
+        let backButton = UIBarButtonItem()
+        backButton.title = "Меню"
+        navigationItem.backBarButtonItem = backButton
     }
     
     @objc private func didTapBottomButton() {
