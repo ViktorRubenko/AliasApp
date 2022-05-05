@@ -23,24 +23,8 @@ class ResultsViewController: UIViewController, GameBaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    private lazy var teamLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Constants.Colors.textColor
-        label.font = .systemFont(ofSize: 35, weight: .semibold)
-        label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    private lazy var scoreLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Constants.Colors.tertiaryTextColor
-        label.font = .systemFont(ofSize: 55, weight: .bold)
-        label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private lazy var teamLabel = componentsFactory.resultsTeamLabel()
+    private lazy var scoreLabel = componentsFactory.resultsScoreLabel()
     private lazy var bottomButton: UIButton = {
         let button = componentsFactory.bottomButton()
         button.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
