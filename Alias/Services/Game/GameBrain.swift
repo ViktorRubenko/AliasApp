@@ -26,7 +26,7 @@ class GameBrain: GameBaseService {
     let categories: [CategoryModel] = CategoriesDict.sorted(by: { $0.value.count > $1.value.count }).compactMap {
         CategoryModel(name: $0, words: $1)
     }
-    private(set) var totalTimerSeconds: Int = 10
+    private(set) var totalTimerSeconds: Int = 60
     var gameDidEnd: Bool {
         subRoundsPlayed == teams.count * totalRounds
     }
@@ -94,7 +94,7 @@ class GameBrain: GameBaseService {
         skippedWords = 0
         secondsRemaining = totalTimerSeconds
         
-        if usedWords.count > 4 {
+        if usedWords.count > teams.count * 4 {
             shuffledWords += usedWords.removeFirst()
             shuffledWords.shuffle()
         }
@@ -108,7 +108,7 @@ class GameBrain: GameBaseService {
     }
     
     func guessedWord() {
-        points += withAction ? 3 : 1
+        points += withAction ? 1 : 1
         roundResults.append((word: currentWord, guessed: true))
         nextWord()
     }
