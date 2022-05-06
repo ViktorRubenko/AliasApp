@@ -23,7 +23,6 @@ class TeamsViewController: UIViewController, PreparationsBaseViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.sectionFooterHeight = UITableView.automaticDimension
         tableView.estimatedSectionFooterHeight = 44.0
-        tableView.allowsSelection = false
         return tableView
     }()
     
@@ -100,6 +99,22 @@ class TeamsViewController: UIViewController, PreparationsBaseViewController {
     @objc private func didTapBottomButton() {
         coordinator?.goToCaterogies()
     }
+    
+    private func showEditAlert(indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Переименовать", message: nil, preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = self.gameService.teams[indexPath.row].name
+        }
+        alert.addAction(UIAlertAction(title: "Изменить", style: .destructive, handler: { _ in
+            guard let text = alert.textFields?.first?.text, !text.isEmpty else { return }
+            self.gameService.renameTeam(index: indexPath.row, name: text)
+            self.tableView.performBatchUpdates {
+                self.tableView.reloadRows(at: [indexPath], with: .middle)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
 }
 
 extension TeamsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -122,8 +137,9 @@ extension TeamsViewController: UITableViewDelegate, UITableViewDataSource {
         let footerLabel = componentsFactory.footerLabel()
         footerLabel.text = """
         Минимальное количество команд: 2
-        Чтобы добавить команду - нажмите кнопку "Добавить"
-        Чтобы удалить или переименовать команду - свапните её влево
+        Добавить - нажмите кнопку "Добавить"
+        Переименовать - свапните её влепо или тапните
+        Чтобы удалить - свапните её влево
         """
         footerLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -136,6 +152,11 @@ extension TeamsViewController: UITableViewDelegate, UITableViewDataSource {
         ])
         
         return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.showEditAlert(indexPath: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -152,19 +173,7 @@ extension TeamsViewController: SwipeTableViewCellDelegate {
         }
         
         let editAction = SwipeAction(style: .default, title: "Переименовать") { action, indexPath in
-            let alert = UIAlertController(title: "Переименовать", message: nil, preferredStyle: .alert)
-            alert.addTextField { textField in
-                textField.placeholder = self.gameService.teams[indexPath.row].name
-            }
-            alert.addAction(UIAlertAction(title: "Изменить", style: .destructive, handler: { _ in
-                guard let text = alert.textFields?.first?.text, !text.isEmpty else { return }
-                self.gameService.renameTeam(index: indexPath.row, name: text)
-                self.tableView.performBatchUpdates {
-                    self.tableView.reloadRows(at: [indexPath], with: .middle)
-                }
-            }))
-            alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
+            self.showEditAlert(indexPath: indexPath)
         }
         
         return gameService.teams.count > 2 ? [editAction, deleteAction] : [editAction]
