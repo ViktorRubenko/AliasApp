@@ -198,6 +198,7 @@ extension GameViewController: GameServiceDelegate {
     }
     
     func teamRoundDidEnd(gameService: GameBaseService) {
+        dismiss(animated: true, completion: nil)
         coordinator?.goToResults()
     }
 }
