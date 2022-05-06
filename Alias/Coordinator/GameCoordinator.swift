@@ -54,7 +54,7 @@ extension GameCoordinator {
         case .nextRound:
             vc = NextRoundViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
         case .game:
-            vc = GameViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
+            vc = GameViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory(), jokeService: JokeBrain())
         case .results:
             vc = ResultsViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
         case .winner:

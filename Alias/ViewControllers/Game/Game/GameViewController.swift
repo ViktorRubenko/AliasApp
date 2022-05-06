@@ -9,6 +9,8 @@ import UIKit
 
 class GameViewController: InitialGameViewController {
 
+    private var jokeService: JokeServiceProtocol!
+    
     private lazy var header: GameHeaderView = {
         let view = GameHeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -92,8 +94,9 @@ class GameViewController: InitialGameViewController {
         return stackView
     }()
     
-    override init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory, jokeService: JokeServiceProtocol) {
         super.init(coordinator: coordinator, gameService: gameService, componentsFactory: componentsFactory)
+        self.jokeService = jokeService
         gameService.delegate = self
     }
     
@@ -199,6 +202,17 @@ extension GameViewController: GameServiceDelegate {
     
     func teamRoundDidEnd(gameService: GameBaseService) {
         dismiss(animated: true, completion: nil)
-        coordinator?.goToResults()
+        jokeService.getJoke { [weak self] result in
+            switch result {
+            case .success(let joke):
+                let alert = UIAlertController(title: "Joke", message: "\(joke.setup)\n\(joke.punchline)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Далее", style: .destructive, handler: { [weak self] _ in
+                    self?.coordinator?.goToResults()
+                }))
+                self?.present(alert, animated: true)
+            case .failure(_):
+                self?.coordinator?.goToResults()
+            }
+        }
     }
 }

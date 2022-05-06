@@ -5,47 +5,26 @@
 //  Created by Даниил Симахин on 04.05.2022.
 //
 
-struct Joke: Decodable {
-    var id: Int
-    var type: String
-    var setup: String
-    var punchline: String
-    var url: String
-}
-
 import Foundation
 
 class JokeBrain: JokeServiceProtocol {
-    var url: String = "https://joke.deno.dev"
-    
-    //MARK: - Use getJoke()
-    /*
-        getJoke(completion: { joke in
-         print(joke?.setup)
-        })
-    */
-    func getJoke(completion: @escaping (Joke?) -> Void) -> String {
-        var setup = ""
+    private let url = "https://joke.deno.dev"
+    func getJoke(completion: @escaping (Result<Joke, Error>) -> Void) {
         
-        guard let url = URL(string: url) else { return setup}
+        guard let url = URL(string: url) else { return }
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
-                if let error = error {
-                    print("Some error")
-                    completion(nil)
+                guard error == nil, let data = data else {
+                    completion(.failure(error!))
                     return
                 }
-                guard let data = data else { return }
                 do {
-                    let string = try JSONDecoder().decode(Joke.self, from: data)
-                    setup = string.setup
-                    completion(string)
-                } catch let jsonError {
-                    print("Failed to decode JSON", jsonError)
-                    completion(nil)
+                    let joke = try JSONDecoder().decode(Joke.self, from: data)
+                    completion(.success(joke))
+                } catch {
+                    completion(.failure(error))
                 }
             }
         }.resume()
-        return setup
     }
 }
