@@ -19,7 +19,7 @@ class AppContainer {
         container.register(ComponentsBaseFactory.self) { _ in
             ComponentsFactory()
         }
-        container.register(JokeServiceProtocol.self) { _ in
+        container.register(JokeBaseService.self) { _ in
             JokeBrain()
         }
         container.register(MenuViewController.self) { resolver in
@@ -29,7 +29,7 @@ class AppContainer {
             GameSettingsViewController(coordinator: nil, gameService: resolver.resolve(GameBaseService.self)!, componentsFactory: resolver.resolve(ComponentsBaseFactory.self)!)
         }
         container.register(GameViewController.self) { resolver in
-            GameViewController(coordinator: nil, gameService: resolver.resolve(GameBaseService.self)!, componentsFactory: resolver.resolve(ComponentsBaseFactory.self)!, jokeService: resolver.resolve(JokeServiceProtocol.self)!)
+            GameViewController(coordinator: nil, gameService: resolver.resolve(GameBaseService.self)!, componentsFactory: resolver.resolve(ComponentsBaseFactory.self)!, jokeService: resolver.resolve(JokeBaseService.self)!)
         }
         container.register(WinnerViewController.self) { resolver in
             WinnerViewController(coordinator: nil, gameService: resolver.resolve(GameBaseService.self)!, componentsFactory: resolver.resolve(ComponentsBaseFactory.self)!)

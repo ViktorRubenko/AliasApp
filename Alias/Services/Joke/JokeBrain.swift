@@ -7,7 +7,7 @@
 
 import Foundation
 
-class JokeBrain: JokeServiceProtocol {
+class JokeBrain: JokeBaseService {
     private let url = "https://joke.deno.dev"
     func getJoke(completion: @escaping (Result<Joke, Error>) -> Void) {
         

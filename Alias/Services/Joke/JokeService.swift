@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol JokeServiceProtocol {
+protocol JokeBaseService {
     func getJoke(completion: @escaping (Result<Joke, Error>) -> Void)
 }
 

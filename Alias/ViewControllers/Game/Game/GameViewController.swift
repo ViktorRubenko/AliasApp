@@ -9,7 +9,7 @@ import UIKit
 
 class GameViewController: InitialGameViewController {
 
-    private var jokeService: JokeServiceProtocol!
+    private var jokeService: JokeBaseService!
     
     private lazy var header: GameHeaderView = {
         let view = GameHeaderView()
@@ -94,7 +94,7 @@ class GameViewController: InitialGameViewController {
         return stackView
     }()
     
-    init(coordinator: GameBaseCoordinator?, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory, jokeService: JokeServiceProtocol) {
+    init(coordinator: GameBaseCoordinator?, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory, jokeService: JokeBaseService) {
         super.init(coordinator: coordinator, gameService: gameService, componentsFactory: componentsFactory)
         self.jokeService = jokeService
         gameService.delegate = self
