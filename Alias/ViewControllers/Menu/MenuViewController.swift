@@ -36,7 +36,7 @@ class MenuViewController: UIViewController, MainBaseCoordinated {
     
     private var needConfigureLayouts = true
     
-    init(coordinator: MainBaseCoordinator, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: MainBaseCoordinator?, componentsFactory: ComponentsBaseFactory) {
         self.coordinator = coordinator
         self.componentsFactory = componentsFactory
         super.init(nibName: nil, bundle: nil)

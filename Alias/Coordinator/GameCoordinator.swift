@@ -15,7 +15,7 @@ protocol GameBaseCoordinator: Coordinator {
 }
 
 protocol GameBaseCoordinated {
-    var coordinator: GameBaseCoordinator? { get }
+    var coordinator: GameBaseCoordinator? { get set }
 }
 
 fileprivate enum GameFlow {
@@ -27,7 +27,9 @@ class GameCoordinator: GameBaseCoordinator {
     var rootViewController: UIViewController?
     
     func start() -> UIViewController {
-        NextRoundViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
+        let vc = AppContainer.shared.container.resolve(NextRoundViewController.self)!
+        vc.coordinator = self
+        return vc
     }
     
     func goToGame() {
@@ -49,19 +51,20 @@ class GameCoordinator: GameBaseCoordinator {
 
 extension GameCoordinator {
     private func goTo(to: GameFlow) {
-        let vc: UIViewController
+        var vc: GameBaseCoordinated
         switch to {
         case .nextRound:
-            vc = NextRoundViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
+            vc = AppContainer.shared.container.resolve(NextRoundViewController.self)!
         case .game:
-            vc = GameViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory(), jokeService: JokeBrain())
+            vc = AppContainer.shared.container.resolve(GameViewController.self)!
         case .results:
-            vc = ResultsViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
+            vc = AppContainer.shared.container.resolve(ResultsViewController.self)!
         case .winner:
-            vc = WinnerViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
+            vc = AppContainer.shared.container.resolve(WinnerViewController.self)!
         }
+        vc.coordinator = self
         guard let navRootVC = navigationRootViewController else { return }
-        navRootVC.pushViewController(vc, animated: true)
+        navRootVC.pushViewController(vc as! UIViewController, animated: true)
         navRootVC.viewControllers[navRootVC.viewControllers.count - 2].removeFromParent()
     }
 }

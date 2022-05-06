@@ -32,7 +32,7 @@ class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }()
     private var tableView = UITableView()
     
-    init(coordinator: RulesBaseCoordinator) {
+    init(coordinator: RulesBaseCoordinator?) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }

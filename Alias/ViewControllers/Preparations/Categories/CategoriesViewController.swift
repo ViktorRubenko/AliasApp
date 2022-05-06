@@ -28,7 +28,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     var tableView = UITableView()
     let iconsCategories = IconCategories()
     
-    init(coordinator: PreparationsCoordinator, gameService: GameBaseService, componentsFactory: ComponentsFactory) {
+    init(coordinator: PreparationsCoordinator?, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
         self.coordinator = coordinator
         self.componentsFactory = componentsFactory
         self.gameService = gameService

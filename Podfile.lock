@@ -1,16 +1,20 @@
 PODS:
+  - Swinject (2.8.1)
   - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
+  - Swinject
   - SwipeCellKit
 
 SPEC REPOS:
   trunk:
+    - Swinject
     - SwipeCellKit
 
 SPEC CHECKSUMS:
+  Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: b0ef5367459b92cbae054ef00715efa90a5ea8a8
+PODFILE CHECKSUM: 07a1121c8eb3096cc70b4515dca62403280ee047
 
 COCOAPODS: 1.11.2

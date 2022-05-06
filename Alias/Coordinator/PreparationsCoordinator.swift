@@ -23,16 +23,20 @@ class PreparationsCoordinator: PreparationsBaseCoordinator {
     
     
     func start() -> UIViewController {
-        TeamsViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
+        let vc = AppContainer.shared.container.resolve(TeamsViewController.self)!
+        vc.coordinator = self
+        return vc
     }
     
     func goToCaterogies() {
-        let vc = CategoriesViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
+        let vc = AppContainer.shared.container.resolve(CategoriesViewController.self)!
+        vc.coordinator = self
         navigationRootViewController?.pushViewController(vc, animated: true)
     }
     
     func goToGameSettings() {
-        let vc = GameSettingsViewController(coordinator: self, gameService: GameBrain.shared, componentsFactory: ComponentsFactory())
+        let vc = AppContainer.shared.container.resolve(GameSettingsViewController.self)!
+        vc.coordinator = self
         navigationRootViewController?.pushViewController(vc, animated: true)
     }
     

@@ -13,7 +13,7 @@ class InitialGameViewController: UIViewController, GameBaseViewController {
     weak var coordinator: GameBaseCoordinator?
     let button = UIBarButtonItem()
     
-    init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: GameBaseCoordinator?, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
         self.coordinator = coordinator
         self.componentsFactory = componentsFactory
         self.gameService = gameService

@@ -32,7 +32,7 @@ class TeamsViewController: UIViewController, PreparationsBaseViewController {
         return button
     }()
     
-    init(coordinator: PreparationsBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: PreparationsBaseCoordinator?, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
         self.coordinator = coordinator
         self.componentsFactory = componentsFactory
         self.gameService = gameService
@@ -105,7 +105,7 @@ class TeamsViewController: UIViewController, PreparationsBaseViewController {
         alert.addTextField { textField in
             textField.placeholder = self.gameService.teams[indexPath.row].name
         }
-        alert.addAction(UIAlertAction(title: "Изменить", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: { _ in
             guard let text = alert.textFields?.first?.text, !text.isEmpty else { return }
             self.gameService.renameTeam(index: indexPath.row, name: text)
             self.tableView.performBatchUpdates {

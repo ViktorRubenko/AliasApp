@@ -49,7 +49,7 @@ class GameSettingsViewController: UIViewController, PreparationsBaseViewControll
         return stackview
     }()
     
-    init(coordinator: PreparationsBaseCoordinator, gameService: GameBaseService,componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: PreparationsBaseCoordinator?, gameService: GameBaseService,componentsFactory: ComponentsBaseFactory) {
         self.componentsFactory = componentsFactory
         self.coordinator = coordinator
         self.gameService = gameService

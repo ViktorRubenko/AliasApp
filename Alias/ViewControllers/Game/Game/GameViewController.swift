@@ -94,7 +94,7 @@ class GameViewController: InitialGameViewController {
         return stackView
     }()
     
-    init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory, jokeService: JokeServiceProtocol) {
+    init(coordinator: GameBaseCoordinator?, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory, jokeService: JokeServiceProtocol) {
         super.init(coordinator: coordinator, gameService: gameService, componentsFactory: componentsFactory)
         self.jokeService = jokeService
         gameService.delegate = self
