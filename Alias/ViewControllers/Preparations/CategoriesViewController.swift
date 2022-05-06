@@ -8,6 +8,17 @@
 import UIKit
 import SwiftUI
 
+struct IconCategories {
+    let icons = [
+        "Еда" : UIImage(named: "food"),
+        "Вещи" : UIImage(named: "things"),
+        "Животные" : UIImage(named: "animals"),
+        "Человек" : UIImage(named: "human"),
+        "Места" : UIImage(named: "places"),
+        "Субстанции" : UIImage(named: "substances"),
+    ]
+}
+
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PreparationsBaseViewController {
     
     weak var coordinator: PreparationsBaseCoordinator?
@@ -15,6 +26,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     var gameService: GameBaseService!
     
     var tableView = UITableView()
+    let iconsCategories = IconCategories()
     
     init(coordinator: PreparationsCoordinator, gameService: GameBaseService, componentsFactory: ComponentsFactory) {
         self.coordinator = coordinator
@@ -88,7 +100,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         cell.subTitle.text = String(subTitle.dropLast(2))
         
-        //cell.image.image = UIImage(named: key) 
+        cell.image.image = iconsCategories.icons[key]!
         
         return cell
     }
