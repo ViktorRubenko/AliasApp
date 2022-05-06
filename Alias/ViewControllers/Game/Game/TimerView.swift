@@ -8,6 +8,12 @@
 import UIKit
 
 class TimerView: UIView {
+    
+    var forceTitle: String? {
+        didSet {
+            timerLabel.text = forceTitle
+        }
+    }
 
     var timerValue = 0 {
         didSet {
@@ -42,7 +48,7 @@ class TimerView: UIView {
             timerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
             timerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
             timerLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            widthAnchor.constraint(greaterThanOrEqualTo: timerLabel.widthAnchor)
+            widthAnchor.constraint(greaterThanOrEqualTo: timerLabel.widthAnchor, constant: 20)
         ])
     }
     

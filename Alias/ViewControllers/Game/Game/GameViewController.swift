@@ -141,7 +141,7 @@ class GameViewController: InitialGameViewController {
             
             timerView.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 10),
             timerView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            timerView.widthAnchor.constraint(equalToConstant: 100),
+            timerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
             
             actionWordContainer.topAnchor.constraint(equalTo: timerView.bottomAnchor),
             actionWordContainer.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10),
@@ -197,7 +197,11 @@ extension GameViewController: GameServiceDelegate {
     }
     
     func timerDidUpdate(gameService: GameBaseService, seconds: Int) {
-        timerView.timerValue = seconds
+        if seconds == 0 {
+            timerView.forceTitle = "Последнее слово"
+        } else {
+            timerView.timerValue = seconds
+        }
     }
     
     func teamRoundDidEnd(gameService: GameBaseService) {
