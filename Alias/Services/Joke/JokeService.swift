@@ -8,5 +8,7 @@
 import Foundation
 
 protocol JokeServiceProtocol {
-    func getJoke(completion: @escaping (String) -> Void) -> String
+    var url: String { get }
+    
+    func getJoke(completion: @escaping (Joke?) -> Void) -> String
 }
