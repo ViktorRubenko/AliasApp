@@ -79,11 +79,6 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         title = "Категории"
     }
     
-    @objc func didTap() {
-        gameService.selectCategory(0)
-        coordinator?.goToGameSettings()
-    }
-    
     //MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return CategoriesDict.count
@@ -113,6 +108,6 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         gameService.selectCategory(indexPath.row)
-        didTap()
+        coordinator?.goToGameSettings()
     }
 }

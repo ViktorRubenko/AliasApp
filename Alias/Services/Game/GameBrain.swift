@@ -26,7 +26,7 @@ class GameBrain: GameBaseService {
     let categories: [CategoryModel] = CategoriesDict.sorted(by: { $0.value.count > $1.value.count }).compactMap {
         CategoryModel(name: $0, words: $1)
     }
-    private(set) var totalTimerSeconds: Int = 4
+    private(set) var totalTimerSeconds: Int = 10
     var gameDidEnd: Bool {
         subRoundsPlayed == teams.count * totalRounds
     }
