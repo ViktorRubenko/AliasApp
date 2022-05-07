@@ -7,13 +7,14 @@
 
 import UIKit
 
-class GameSettingsViewController: UIViewController, PreparationsBaseViewController {
-
+class GameSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PreparationsBaseViewController {
+    
     weak var coordinator: PreparationsBaseCoordinator?
     var componentsFactory: ComponentsBaseFactory!
     var gameService: GameBaseService!
-    
-    private var numberRounds = 4
+
+    private var tableview = UITableView()
+    var gameSettings = GameSettings()
     
     private lazy var bottomButton: UIButton = {
         let button = componentsFactory.bottomButton()
@@ -24,30 +25,6 @@ class GameSettingsViewController: UIViewController, PreparationsBaseViewControll
     }()
     private lazy var bottomButtonContainer = componentsFactory.bottomButtonContainer()
     private lazy var numberRoundsTextLabel = componentsFactory.numberOfRoundsTextLabel()
-    private lazy var numberRoundsCountLabel: UILabel = {
-        let label = componentsFactory.numberOfRoundsCountLabel()
-        label.text = String(numberRounds)
-        return label
-    }()
-    private lazy var numberRoundsStepper: UIStepper = {
-        let stepper = UIStepper()
-        stepper.sizeThatFits(CGSize(width: 50, height: 50))
-        stepper.minimumValue = 1
-        stepper.maximumValue = 10
-        stepper.value = Double(numberRounds)
-        stepper.addTarget(self, action: #selector(pressedChangedValue), for: .valueChanged)
-        stepper.translatesAutoresizingMaskIntoConstraints = false
-        return stepper
-    }()
-    private let numberRoundsStackView: UIStackView = {
-        let stackview = UIStackView()
-        stackview.axis = .vertical
-        stackview.alignment = .center
-        stackview.distribution = .fillProportionally
-        stackview.spacing = 10
-        stackview.translatesAutoresizingMaskIntoConstraints = false
-        return stackview
-    }()
     
     init(coordinator: PreparationsBaseCoordinator?, gameService: GameBaseService,componentsFactory: ComponentsBaseFactory) {
         self.componentsFactory = componentsFactory
@@ -62,24 +39,32 @@ class GameSettingsViewController: UIViewController, PreparationsBaseViewControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createTable()
         setupViews()
         setupNavBar()
     }
     
-    @objc private func pressedChangedValue() {
-        numberRounds = Int(numberRoundsStepper.value)
-        numberRoundsCountLabel.text = String(numberRounds)
+    func createTable() {
+        self.tableview = UITableView(frame: view.bounds, style: .plain)
+        self.tableview.register(GameSettingsTableViewCell.self, forCellReuseIdentifier: GameSettingsTableViewCell.identifire)
+        
+        tableview.dataSource = self
+        tableview.delegate = self
+        
+        tableview.estimatedRowHeight = 100
+        tableview.rowHeight = UITableView.automaticDimension
+        tableview.translatesAutoresizingMaskIntoConstraints = false
+        tableview.backgroundColor = .clear
+        tableview.sectionHeaderHeight = 140
+        tableview.allowsSelection = false
     }
     
-    private func setupViews() {
+    func setupViews() {
         view.backgroundColor = Constants.Colors.mainBackgroundColor
         
         view.addSubview(bottomButtonContainer)
-        view.addSubview(numberRoundsStackView)
         bottomButtonContainer.addSubview(bottomButton)
-        numberRoundsStackView.addArrangedSubview(numberRoundsTextLabel)
-        numberRoundsStackView.addArrangedSubview(numberRoundsCountLabel)
-        numberRoundsStackView.addArrangedSubview(numberRoundsStepper)
+        view.addSubview(tableview)
         
         NSLayoutConstraint.activate([
             bottomButtonContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -92,20 +77,59 @@ class GameSettingsViewController: UIViewController, PreparationsBaseViewControll
             bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             bottomButton.heightAnchor.constraint(equalToConstant: Constants.Sizes.BottomButton.height),
             
-            numberRoundsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50),
-            numberRoundsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
-            numberRoundsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
-            numberRoundsStackView.bottomAnchor.constraint(greaterThanOrEqualTo: bottomButtonContainer.topAnchor, constant: -100)
+            tableview.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            tableview.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableview.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: 10),
+            tableview.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
         ])
     }
     
     private func setupNavBar() {
         title = "Настройки"
     }
-
+    
     @objc func didTapBottomButton() {
-        gameService.setRounds(numberRounds)
+        //gameService.setRounds(numberRounds)
         gameService.startNewGame()
         coordinator?.goToNextRound()
+    }
+    
+    
+    @objc func changedValueSlider(_ sender: UISlider) {
+        //gameSettings.changeNumberRounds(value: sender.value)
+        //self.tableview.reloadData()
+        print(sender.value)
+    }
+
+    //MARK: - UTTableViewDataSourse
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: GameSettingsTableViewCell.identifire, for: indexPath) as! GameSettingsTableViewCell
+        
+        let index = indexPath.row
+        let model = gameSettings.settingsCells[index]
+        cell.setGameSetting(settings: model)
+        switch model.type {
+        case .numberRounds:
+            cell.callback = {value in
+                self.gameService.setRounds(Int(value))
+            }
+            cell.scoreLabel.text = String(2)
+        case .timeRounds:
+            cell.callback = {value in
+                print(value)
+            }
+            cell.scoreLabel.text = String(30)
+        case .frequencyActions:
+            cell.scoreLabel.text = "Редко"
+            cell.callback = {value in
+                cell.scoreLabel.text = self.gameSettings.frequencyActionsList.list[Int(round(value))]
+            }
+        }
+
+        return cell
     }
 }
