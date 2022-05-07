@@ -11,6 +11,8 @@
 		6F88ED47282165760058EAD9 /* GameBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88ED46282165760058EAD9 /* GameBrain.swift */; };
 		A5101DF12821783500EDCB5F /* RuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5101DF02821783500EDCB5F /* RuleTableViewCell.swift */; };
 		A590534428243E1800B010AE /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A590534328243E1800B010AE /* CategoryTableViewCell.swift */; };
+		A590844428251B2E00D0AF5A /* GameSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A590844328251B2E00D0AF5A /* GameSettingsTableViewCell.swift */; };
+		A59084662826B59B00D0AF5A /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59084652826B59B00D0AF5A /* GameSettings.swift */; };
 		AE4CB4077AF59CCD1906D4B8 /* Pods_Alias.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB0B5093EB43E6BE58FC4D8 /* Pods_Alias.framework */; };
 		BE73809F532376BC7496309B /* Pods_AliasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 403CE3B167E85EE967ED65F0 /* Pods_AliasTests.framework */; };
 		E378F4112823DF2D0067342A /* GameHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378F4102823DF2D0067342A /* GameHeaderView.swift */; };
@@ -65,6 +67,8 @@
 		9FB0B5093EB43E6BE58FC4D8 /* Pods_Alias.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alias.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5101DF02821783500EDCB5F /* RuleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleTableViewCell.swift; sourceTree = "<group>"; };
 		A590534328243E1800B010AE /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		A590844328251B2E00D0AF5A /* GameSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		A59084652826B59B00D0AF5A /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		E378F4102823DF2D0067342A /* GameHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHeaderView.swift; sourceTree = "<group>"; };
 		E378F4122823E8ED0067342A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		E378F414282402950067342A /* GameFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFooterView.swift; sourceTree = "<group>"; };
@@ -343,6 +347,8 @@
 				E3B4D30B281EBCEE0042AF06 /* CategoriesViewController.swift */,
 				E3B4D33B281F229E0042AF06 /* TeamsViewController.swift */,
 				A590534328243E1800B010AE /* CategoryTableViewCell.swift */,
+				A590844328251B2E00D0AF5A /* GameSettingsTableViewCell.swift */,
+				A59084652826B59B00D0AF5A /* GameSettings.swift */,
 			);
 			path = Preparations;
 			sourceTree = "<group>";
@@ -532,10 +538,12 @@
 				E378F4132823E8ED0067342A /* TimerView.swift in Sources */,
 				E3B4D2F3281EB29E0042AF06 /* AppDelegate.swift in Sources */,
 				E3B4D33C281F229E0042AF06 /* TeamsViewController.swift in Sources */,
+				A59084662826B59B00D0AF5A /* GameSettings.swift in Sources */,
 				E3B4D30A281EBCC40042AF06 /* RulesViewController.swift in Sources */,
 				E3B4D310281EBE190042AF06 /* JokeService.swift in Sources */,
 				E3A05A2C2821DBA100855DFD /* Coordinator.swift in Sources */,
 				E3B4D347281F332B0042AF06 /* NavigationController.swift in Sources */,
+				A590844428251B2E00D0AF5A /* GameSettingsTableViewCell.swift in Sources */,
 				E3B4D2F5281EB29E0042AF06 /* SceneDelegate.swift in Sources */,
 				A5101DF12821783500EDCB5F /* RuleTableViewCell.swift in Sources */,
 				E3A05A272821C94800855DFD /* CategoriesData.swift in Sources */,
