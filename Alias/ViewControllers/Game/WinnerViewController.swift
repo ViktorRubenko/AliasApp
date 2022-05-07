@@ -123,7 +123,14 @@ class WinnerViewController: InitialGameViewController {
     }
     
     private func updateUI() {
-        winnerTeamLabel.text = gameService.teams.sorted(by: { $0.score > $1.score }).first?.name
+        let maxPoints = gameService.teams.compactMap({ $0.score }).max()!
+        let winnerTeams = gameService.teams.filter({ $0.score == maxPoints })
+        if winnerTeams.count == 1 {
+            winnerTeamLabel.text = gameService.teams.sorted(by: { $0.score > $1.score }).first?.name
+        } else {
+            winnerTeamLabel.text = winnerTeams.compactMap({ $0.name }).joined(separator: ", ")
+            winnerLabel.text = "НИЧЬЯ"
+        }
     }
     
     override func setupNavBar() {
