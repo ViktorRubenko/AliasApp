@@ -27,6 +27,7 @@ enum Frequency: Int {
 protocol GameBaseService: AnyObject {
     var delegate: GameServiceDelegate? {get set}
     
+    var frequancyValue: Frequency { get }
     var currentRound: Int { get }
     var points: Int { get }
     var skippedWords: Int { get }

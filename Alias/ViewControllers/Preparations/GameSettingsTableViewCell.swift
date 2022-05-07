@@ -62,11 +62,13 @@ class GameSettingsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setGameSetting(settings: SettingCell) {
+    func setGameSetting(settings: SettingCell, initialValue: (string : String, int: Int)) {
         titleLabel.text = settings.titleLabel
+        scoreLabel.text = initialValue.string
         subTitleLabel.text = settings.subTitleLabel
         slider.minimumValue = Float(settings.sliderMinValue)
         slider.maximumValue = Float(settings.sliderMaxValue)
+        slider.setValue(Float(initialValue.int), animated: false)
     }
     
     @objc func changeValueSlider(_ sender: UISlider) {

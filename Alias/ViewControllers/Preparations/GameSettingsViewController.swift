@@ -89,7 +89,6 @@ class GameSettingsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     @objc func didTapBottomButton() {
-        //gameService.setRounds(numberRounds)
         gameService.startNewGame()
         coordinator?.goToNextRound()
     }
@@ -104,22 +103,22 @@ class GameSettingsViewController: UIViewController, UITableViewDataSource, UITab
         
         let index = indexPath.row
         let model = gameSettings.settingsCells[index]
-        cell.setGameSetting(settings: model)
         switch model.type {
         case .numberRounds:
+            cell.setGameSetting(settings: model, initialValue: (string: String(GameBrain.shared.totalRounds), int: GameBrain.shared.totalRounds))
             cell.callback = {value in
                 self.gameService.setRounds(Int(value))
             }
-            cell.scoreLabel.text = String(2)
         case .timeRounds:
+            cell.setGameSetting(settings: model, initialValue: (string: String(GameBrain.shared.totalTimerSeconds), int: GameBrain.shared.totalTimerSeconds))
             cell.callback = {value in
-                print(value)
+                self.gameService.setSeconds(Int(value))
             }
-            cell.scoreLabel.text = String(30)
         case .frequencyActions:
-            cell.scoreLabel.text = "Отключено"
+            cell.setGameSetting(settings: model, initialValue: (string: String(gameSettings.frequencyActionsList.list[GameBrain.shared.frequancyValue.rawValue]!), int: GameBrain.shared.frequancyValue.rawValue))
             cell.callback = {value in
                 cell.scoreLabel.text = self.gameSettings.frequencyActionsList.list[Int(round(value))]
+                self.gameService.setActionFrequency(.init(rawValue: Int(round(value))) ?? .none)
             }
         }
 
