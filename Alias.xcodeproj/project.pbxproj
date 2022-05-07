@@ -150,6 +150,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A5099C562826FA2800F394B6 /* GameSettings */ = {
+			isa = PBXGroup;
+			children = (
+				A590844328251B2E00D0AF5A /* GameSettingsTableViewCell.swift */,
+				A59084652826B59B00D0AF5A /* GameSettings.swift */,
+				E3B4D33D281F22B40042AF06 /* GameSettingsViewController.swift */,
+			);
+			path = GameSettings;
+			sourceTree = "<group>";
+		};
 		E36CA3D32825D1B800498A71 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,11 +376,9 @@
 		E3FF9B8728230480003FAA9E /* Preparations */ = {
 			isa = PBXGroup;
 			children = (
-				E3B4D33D281F22B40042AF06 /* GameSettingsViewController.swift */,
+				A5099C562826FA2800F394B6 /* GameSettings */,
 				E36CA3D32825D1B800498A71 /* Categories */,
 				E3B4D33B281F229E0042AF06 /* TeamsViewController.swift */,
-				A590844328251B2E00D0AF5A /* GameSettingsTableViewCell.swift */,
-				A59084652826B59B00D0AF5A /* GameSettings.swift */,
 			);
 			path = Preparations;
 			sourceTree = "<group>";

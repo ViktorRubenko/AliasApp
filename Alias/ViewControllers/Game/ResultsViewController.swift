@@ -41,7 +41,7 @@ class ResultsViewController: InitialGameViewController {
         setupViews()
         setupNavBar()
         teamLabel.text = gameService.currentTeam?.name
-        scoreLabel.text = "+\(gameService.points)"
+        scoreLabel.text = "\(gameService.points >= 0 ? "+" : "")\(gameService.points)"
         bottomButton.setTitle(gameService.gameDidEnd ? "Результаты игры" : "Далее", for: .normal)
     }
     
