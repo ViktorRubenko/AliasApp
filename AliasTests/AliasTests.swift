@@ -17,6 +17,7 @@ class AliasTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = GameBrain.shared
+        sut.setActionFrequency(.none)
     }
 
     override func tearDownWithError() throws {
@@ -44,12 +45,12 @@ class AliasTests: XCTestCase {
         score += getAction ? 3 : 1
         sut.guessedWord()
         
-        score -= 1
+        score -= getAction ? 3 : 1
         sut.skipWord()
         
         XCTAssertEqual(sut.points, score)
         XCTAssertEqual(sut.roundResults.reduce(0, { partialResult, element in
-            partialResult + (element.value ? 1 : 0)
+            partialResult + (element.guessed ? 1 : 0)
         }), 3)
         
         sut.resetTeamRound()

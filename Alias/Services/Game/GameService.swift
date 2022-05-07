@@ -17,6 +17,13 @@ struct CategoryModel {
     let words: [String]
 }
 
+enum Frequency: Int {
+    case none = 0
+    case low
+    case medium
+    case hight
+}
+
 protocol GameBaseService: AnyObject {
     var delegate: GameServiceDelegate? {get set}
     
@@ -37,6 +44,7 @@ protocol GameBaseService: AnyObject {
     func setRounds(_ rounds: Int)
     func setSeconds(_ seconds: Int)
     func selectCategory(_ index: Int)
+    func setActionFrequency(_ frequency: Frequency)
     
     func startNewGame()
     func guessedWord()
@@ -44,6 +52,8 @@ protocol GameBaseService: AnyObject {
     func startCurrentTeamRound()
     func resetTeamRound()
     func endTeamRound()
+    
+    
 }
 
 protocol GameServiceDelegate: AnyObject {
