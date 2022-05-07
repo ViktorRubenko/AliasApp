@@ -40,6 +40,7 @@ class GameBrain: GameBaseService {
     private var shuffledWords: [String] = []
     weak private var timer: Timer?
     private var subRoundsPlayed = 0
+    private var probabilityArray: [Bool] = [false]
     
     private init() {}
     
@@ -68,6 +69,8 @@ class GameBrain: GameBaseService {
     func selectCategory(_ index: Int) {
         currentCategory = categories[index]
     }
+    
+    
     
     func startNewGame() {
         currentRound = 1
@@ -108,13 +111,13 @@ class GameBrain: GameBaseService {
     }
     
     func guessedWord() {
-        points += withAction ? 1 : 1
+        points += withAction ? 3 : 1
         roundResults.append((word: currentWord, guessed: true))
         nextWord()
     }
     
     func skipWord() {
-        points -= points > 0 ? 1 : 0
+        points -= withAction ? 3 : 1
         skippedWords += 1
         roundResults.append((word: currentWord, guessed: false))
         nextWord()
@@ -134,6 +137,20 @@ class GameBrain: GameBaseService {
             currentRound += 1
         }
     }
+    
+    func setActionFrequency(_ frequency: Frequency) {
+        switch frequency {
+        case .none:
+            probabilityArray = [false]
+        case .low:
+            probabilityArray = [true, false, false, false]
+        case .medium:
+            probabilityArray = [true, true, false, false]
+        case .hight:
+            probabilityArray = [true, true, true, false]
+        }
+    }
+    
 }
 
 private extension GameBrain {
@@ -159,7 +176,7 @@ private extension GameBrain {
         usedWords[usedWords.count - 1].append(currentWord)
         if timer != nil {
             currentWord = shuffledWords.removeFirst()
-            withAction = [true, false, false, false].randomElement()!
+            withAction = probabilityArray.randomElement()!
             delegate?.handleWord(gameService: self, word: currentWord, action: withAction ? actions.randomElement()! : nil)
             checkSuffledWords()
         } else {
