@@ -93,13 +93,6 @@ class GameSettingsViewController: UIViewController, UITableViewDataSource, UITab
         gameService.startNewGame()
         coordinator?.goToNextRound()
     }
-    
-    
-    @objc func changedValueSlider(_ sender: UISlider) {
-        //gameSettings.changeNumberRounds(value: sender.value)
-        //self.tableview.reloadData()
-        print(sender.value)
-    }
 
     //MARK: - UTTableViewDataSourse
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,7 +117,7 @@ class GameSettingsViewController: UIViewController, UITableViewDataSource, UITab
             }
             cell.scoreLabel.text = String(30)
         case .frequencyActions:
-            cell.scoreLabel.text = "Редко"
+            cell.scoreLabel.text = "Отключено"
             cell.callback = {value in
                 cell.scoreLabel.text = self.gameSettings.frequencyActionsList.list[Int(round(value))]
             }
