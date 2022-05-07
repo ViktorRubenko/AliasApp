@@ -26,7 +26,8 @@ class GameBrain: GameBaseService {
     let categories: [CategoryModel] = CategoriesDict.sorted(by: { $0.value.count > $1.value.count }).compactMap {
         CategoryModel(name: $0, words: $1)
     }
-    private(set) var totalTimerSeconds: Int = 10
+    private(set) var totalTimerSeconds: Int = 30
+    private(set) var frequancyValue: Frequency = .low
     var gameDidEnd: Bool {
         subRoundsPlayed == teams.count * totalRounds
     }
@@ -139,6 +140,7 @@ class GameBrain: GameBaseService {
     }
     
     func setActionFrequency(_ frequency: Frequency) {
+        frequancyValue = frequency
         switch frequency {
         case .none:
             probabilityArray = [false]
@@ -179,6 +181,7 @@ private extension GameBrain {
             withAction = probabilityArray.randomElement()!
             delegate?.handleWord(gameService: self, word: currentWord, action: withAction ? actions.randomElement()! : nil)
             checkSuffledWords()
+            print(probabilityArray)
         } else {
             subRoundsPlayed += 1
             delegate?.teamRoundDidEnd(gameService: self)

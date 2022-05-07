@@ -8,7 +8,7 @@
 import Foundation
 
 struct FrequencyActions {
-    let list = [1: "Редко", 2: "Нормально", 3: "Часто"]
+    let list = [0: "Отключено", 1: "Редко", 2: "Нормально", 3: "Часто"]
 }
 
 enum SettingsCellType{
@@ -24,9 +24,10 @@ struct SettingCell {
 }
 
 struct GameSettings {
-    let settingsCells = [ SettingCell(titleLabel: "Количество раундов", subTitleLabel: "общее число раундов для каждой команды", sliderMinValue: 2, sliderMaxValue: 10, type: .numberRounds),
-                          SettingCell(titleLabel: "Время раунда", subTitleLabel: "продолжительность в секундах", sliderMinValue: 30, sliderMaxValue: 120, type: .timeRounds),
-                          SettingCell(titleLabel: "Частота действий", subTitleLabel: "вероятность выпадания действий", sliderMinValue: 1, sliderMaxValue: 3, type: .frequencyActions)
+    let settingsCells = [
+        SettingCell(titleLabel: "Количество раундов", subTitleLabel: "общее число раундов для каждой команды", sliderMinValue: 2, sliderMaxValue: 10, type: .numberRounds),
+        SettingCell(titleLabel: "Время раунда", subTitleLabel: "продолжительность в секундах", sliderMinValue: 30, sliderMaxValue: 120, type: .timeRounds),
+        SettingCell(titleLabel: "Частота действий", subTitleLabel: "вероятность выпадания действий", sliderMinValue: 0, sliderMaxValue: 3, type: .frequencyActions)
                       ]
     let frequencyActionsList = FrequencyActions()
 }
