@@ -67,7 +67,7 @@ class NextRoundViewController: InitialGameViewController {
         gameService.teams.forEach {
             let innerStackView = UIStackView()
             innerStackView.axis = .horizontal
-            innerStackView.distribution = .fillProportionally
+            innerStackView.distribution = .equalCentering
             let teamLabel = componentsFactory.roundTeamListLabel()
             let teamScoreLabel = componentsFactory.roundTeamScoreListLabel()
             teamLabel.text = "\($0.name):"

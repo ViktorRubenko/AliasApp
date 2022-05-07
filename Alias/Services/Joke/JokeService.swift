@@ -7,6 +7,16 @@
 
 import Foundation
 
-protocol JokeServiceProtocol {
-    func getJoke(completion: @escaping (String) -> Void) -> String
+protocol JokeBaseService {
+    func getJoke(completion: @escaping (Result<Joke, Error>) -> Void)
+}
+
+enum JokeServiceError: Error {
+    case InvalidURL
+    case InvalidResponse
+}
+
+struct Joke: Decodable {
+    var setup: String
+    var punchline: String
 }

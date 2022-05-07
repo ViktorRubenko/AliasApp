@@ -26,7 +26,7 @@ class GameSettingsViewController: UIViewController, UITableViewDataSource, UITab
     private lazy var bottomButtonContainer = componentsFactory.bottomButtonContainer()
     private lazy var numberRoundsTextLabel = componentsFactory.numberOfRoundsTextLabel()
     
-    init(coordinator: PreparationsBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: PreparationsBaseCoordinator?, gameService: GameBaseService,componentsFactory: ComponentsBaseFactory) {
         self.componentsFactory = componentsFactory
         self.coordinator = coordinator
         self.gameService = gameService

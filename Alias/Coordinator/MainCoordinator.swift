@@ -27,7 +27,8 @@ final class MainCoordinator: MainBaseCoordinator {
     lazy var gameCoordinator = GameCoordinator()
     
     func start() -> UIViewController {
-        let vc = MenuViewController(coordinator: self, componentsFactory: ComponentsFactory())
+        let vc = AppContainer.shared.container.resolve(MenuViewController.self)!
+        vc.coordinator = self
         navigationRootViewController?.viewControllers = [vc]
         return rootViewController!
     }

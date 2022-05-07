@@ -23,9 +23,42 @@ protocol ComponentsBaseFactory {
     func wordResultImageView(guessed: Bool) -> UIImageView
     func resultsTeamLabel() -> UILabel
     func resultsScoreLabel() -> UILabel
+    func winnerLabel() -> UILabel
+    func winnerTeamLabel() -> UILabel
+    func teamsGameResultsLabel() -> UILabel
 }
 
 struct ComponentsFactory: ComponentsBaseFactory {
+    
+    func teamsGameResultsLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = Constants.Colors.tertiaryTextColor
+        label.font = .systemFont(ofSize: 25, weight: .semibold)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Результаты команд"
+        return label
+    }
+    
+    func winnerLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = Constants.Colors.greenColor
+        label.font = .systemFont(ofSize: 30, weight: .semibold)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "ПОБЕДИТЕЛЬ"
+        return label
+    }
+    
+    func winnerTeamLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = Constants.Colors.textColor
+        label.font = .systemFont(ofSize: 55, weight: .bold)
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
     
     func resultsScoreLabel() -> UILabel {
         let label = UILabel()

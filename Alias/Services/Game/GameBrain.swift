@@ -26,7 +26,7 @@ class GameBrain: GameBaseService {
     let categories: [CategoryModel] = CategoriesDict.sorted(by: { $0.value.count > $1.value.count }).compactMap {
         CategoryModel(name: $0, words: $1)
     }
-    private(set) var totalTimerSeconds: Int = 4
+    private(set) var totalTimerSeconds: Int = 10
     var gameDidEnd: Bool {
         subRoundsPlayed == teams.count * totalRounds
     }
@@ -94,7 +94,7 @@ class GameBrain: GameBaseService {
         skippedWords = 0
         secondsRemaining = totalTimerSeconds
         
-        if usedWords.count > 4 {
+        if usedWords.count > teams.count * 4 {
             shuffledWords += usedWords.removeFirst()
             shuffledWords.shuffle()
         }
@@ -108,7 +108,7 @@ class GameBrain: GameBaseService {
     }
     
     func guessedWord() {
-        points += withAction ? 3 : 1
+        points += withAction ? 1 : 1
         roundResults.append((word: currentWord, guessed: true))
         nextWord()
     }
@@ -143,8 +143,6 @@ private extension GameBrain {
             self.secondsRemaining -= 1
             self.delegate?.timerDidUpdate(gameService: self, seconds: self.secondsRemaining)
             if self.secondsRemaining == 0 {
-                self.subRoundsPlayed += 1
-                self.delegate?.teamRoundDidEnd(gameService: self)
                 timer.invalidate()
             }
         }
@@ -159,9 +157,14 @@ private extension GameBrain {
     
     func nextWord() {
         usedWords[usedWords.count - 1].append(currentWord)
-        currentWord = shuffledWords.removeFirst()
-        withAction = [true, false, false, false].randomElement()!
-        delegate?.handleWord(gameService: self, word: currentWord, action: withAction ? actions.randomElement()! : nil)
-        checkSuffledWords()
+        if timer != nil {
+            currentWord = shuffledWords.removeFirst()
+            withAction = [true, false, false, false].randomElement()!
+            delegate?.handleWord(gameService: self, word: currentWord, action: withAction ? actions.randomElement()! : nil)
+            checkSuffledWords()
+        } else {
+            subRoundsPlayed += 1
+            delegate?.teamRoundDidEnd(gameService: self)
+        }
     }
 }

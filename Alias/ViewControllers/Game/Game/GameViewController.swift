@@ -9,6 +9,8 @@ import UIKit
 
 class GameViewController: InitialGameViewController {
 
+    private var jokeService: JokeBaseService!
+    
     private lazy var header: GameHeaderView = {
         let view = GameHeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -92,8 +94,9 @@ class GameViewController: InitialGameViewController {
         return stackView
     }()
     
-    override init(coordinator: GameBaseCoordinator, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory) {
+    init(coordinator: GameBaseCoordinator?, gameService: GameBaseService, componentsFactory: ComponentsBaseFactory, jokeService: JokeBaseService) {
         super.init(coordinator: coordinator, gameService: gameService, componentsFactory: componentsFactory)
+        self.jokeService = jokeService
         gameService.delegate = self
     }
     
@@ -138,7 +141,7 @@ class GameViewController: InitialGameViewController {
             
             timerView.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 10),
             timerView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            timerView.widthAnchor.constraint(equalToConstant: 100),
+            timerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
             
             actionWordContainer.topAnchor.constraint(equalTo: timerView.bottomAnchor),
             actionWordContainer.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10),
@@ -194,10 +197,26 @@ extension GameViewController: GameServiceDelegate {
     }
     
     func timerDidUpdate(gameService: GameBaseService, seconds: Int) {
-        timerView.timerValue = seconds
+        if seconds == 0 {
+            timerView.forceTitle = "Последнее слово"
+        } else {
+            timerView.timerValue = seconds
+        }
     }
     
     func teamRoundDidEnd(gameService: GameBaseService) {
-        coordinator?.goToResults()
+        dismiss(animated: true, completion: nil)
+        jokeService.getJoke { [weak self] result in
+            switch result {
+            case .success(let joke):
+                let alert = UIAlertController(title: "Joke", message: "\(joke.setup)\n\(joke.punchline)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Далее", style: .destructive, handler: { [weak self] _ in
+                    self?.coordinator?.goToResults()
+                }))
+                self?.present(alert, animated: true)
+            case .failure(_):
+                self?.coordinator?.goToResults()
+            }
+        }
     }
 }

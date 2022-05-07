@@ -19,7 +19,8 @@ class RulesCoordinator: RulesBaseCoordinator {
     var rootViewController: UIViewController?
     
     func start() -> UIViewController {
-        let vc = RulesViewController(coordinator: self)
+        let vc = AppContainer.shared.container.resolve(RulesViewController.self)!
+        vc.coordinator = self
         return vc
     }
     
