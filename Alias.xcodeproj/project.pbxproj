@@ -192,6 +192,15 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
+		E39422132827D0EA009A61FF /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E39422102827CEBB009A61FF /* fail.mp3 */,
+				E394220F2827CEBB009A61FF /* success.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		E3A05A1B2821C11600855DFD /* AliasTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,8 +270,6 @@
 		E3B4D2F1281EB29E0042AF06 /* Alias */ = {
 			isa = PBXGroup;
 			children = (
-				E39422102827CEBB009A61FF /* fail.mp3 */,
-				E394220F2827CEBB009A61FF /* success.wav */,
 				E3B4D31C281EC5A70042AF06 /* Application */,
 				E36CA3D42825D41200498A71 /* DIContainer */,
 				E3A05A2D2821DBA500855DFD /* Coordinator */,
@@ -334,6 +341,7 @@
 		E3B4D31E281EC5BE0042AF06 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E39422132827D0EA009A61FF /* Sounds */,
 				E3B4D2FB281EB2A10042AF06 /* Assets.xcassets */,
 				E3B4D300281EB2A10042AF06 /* Info.plist */,
 				E3B4D337281F1AD80042AF06 /* Constants.swift */,
