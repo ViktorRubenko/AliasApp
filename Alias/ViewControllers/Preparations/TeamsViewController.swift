@@ -23,6 +23,7 @@ class TeamsViewController: UIViewController, PreparationsBaseViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.sectionFooterHeight = UITableView.automaticDimension
         tableView.estimatedSectionFooterHeight = 44.0
+        tableView.alwaysBounceVertical = false
         return tableView
     }()
     

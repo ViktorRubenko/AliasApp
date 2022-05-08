@@ -45,12 +45,12 @@ class GameSettingsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func createTable() {
-        self.tableview = UITableView(frame: view.bounds, style: .plain)
-        self.tableview.register(GameSettingsTableViewCell.self, forCellReuseIdentifier: GameSettingsTableViewCell.identifire)
+        tableview = UITableView(frame: view.bounds, style: .plain)
+        tableview.register(GameSettingsTableViewCell.self, forCellReuseIdentifier: GameSettingsTableViewCell.identifire)
         
         tableview.dataSource = self
         tableview.delegate = self
-        
+        tableview.alwaysBounceVertical = false
         tableview.estimatedRowHeight = 100
         tableview.rowHeight = UITableView.automaticDimension
         tableview.translatesAutoresizingMaskIntoConstraints = false
