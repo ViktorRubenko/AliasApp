@@ -125,8 +125,10 @@ extension TeamsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SwipeTableViewCell
+        cell.backgroundColor = .white.withAlphaComponent(0.4)
         var config = UIListContentConfiguration.cell()
         config.text = gameService.teams[indexPath.row].name
+        config.textProperties.color = Constants.Colors.textColor!
         cell.contentConfiguration = config
         cell.delegate = self
         return cell

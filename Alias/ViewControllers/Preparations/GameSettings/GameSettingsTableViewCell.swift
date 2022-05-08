@@ -19,6 +19,7 @@ class GameSettingsTableViewCell: UITableViewCell {
         title.backgroundColor = .clear
         title.numberOfLines = 0
         title.translatesAutoresizingMaskIntoConstraints = false
+        title.textColor = Constants.Colors.textColor
         return title
     }()
     let subTitleLabel: UILabel = {

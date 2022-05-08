@@ -22,10 +22,11 @@ class CategoryTableViewCell: UITableViewCell {
     let title: UILabel = {
         let title = UILabel()
         title.font = .systemFont(ofSize: 25, weight: .bold)
+        title.textColor = Constants.Colors.textColor
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
-    let view: UIView = {
+    let bgSubTitle: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray.withAlphaComponent(0.3)
         view.layer.cornerRadius = 10
@@ -35,6 +36,7 @@ class CategoryTableViewCell: UITableViewCell {
     let subTitle: UILabel = {
         let subTitle = UILabel()
         subTitle.numberOfLines = 1
+        subTitle.textColor = Constants.Colors.textColor
         subTitle.translatesAutoresizingMaskIntoConstraints = false
         return subTitle
     }()
@@ -51,33 +53,29 @@ class CategoryTableViewCell: UITableViewCell {
     func setupUI() {
         contentView.addSubview(image)
         contentView.addSubview(title)
-        contentView.addSubview(view)
-        view.addSubview(subTitle)
+        contentView.addSubview(bgSubTitle)
+        bgSubTitle.addSubview(subTitle)
         
         NSLayoutConstraint.activate([
+            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             image.widthAnchor.constraint(equalToConstant: 50),
             image.heightAnchor.constraint(equalToConstant: 50),
-            image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
-            title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            title.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 10),
             title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            title.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
+            title.bottomAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 5),
+
+            bgSubTitle.leadingAnchor.constraint(equalTo: title.leadingAnchor),
+            bgSubTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            bgSubTitle.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 5),
             
-            view.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5),
-            view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            view.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
-            
-            subTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            subTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            subTitle.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-            subTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            
+            subTitle.leadingAnchor.constraint(equalTo: bgSubTitle.leadingAnchor, constant: 5),
+            subTitle.trailingAnchor.constraint(equalTo: bgSubTitle.trailingAnchor, constant: -5),
+            subTitle.centerYAnchor.constraint(equalTo: bgSubTitle.centerYAnchor),
+
             contentView.topAnchor.constraint(equalTo: title.topAnchor, constant: -10),
-            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10),
-            
-            contentView.topAnchor.constraint(lessThanOrEqualTo: image.topAnchor, constant: -10),
-            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: image.bottomAnchor, constant: 10)
+            contentView.bottomAnchor.constraint(equalTo: bgSubTitle.bottomAnchor, constant: 10),
         ])
         
     }

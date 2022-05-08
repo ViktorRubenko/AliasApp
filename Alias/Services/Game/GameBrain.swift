@@ -181,7 +181,6 @@ private extension GameBrain {
             withAction = probabilityArray.randomElement()!
             delegate?.handleWord(gameService: self, word: currentWord, action: withAction ? actions.randomElement()! : nil)
             checkSuffledWords()
-            print(probabilityArray)
         } else {
             subRoundsPlayed += 1
             delegate?.teamRoundDidEnd(gameService: self)
