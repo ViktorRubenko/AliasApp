@@ -88,6 +88,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTableViewCell.identifire, for: indexPath) as! CategoryTableViewCell
         cell.backgroundColor = .white.withAlphaComponent(0.4)
+        cell.selectionStyle = .none
         
         let key = gameService.categories[indexPath.row].name
         cell.title.text = key
