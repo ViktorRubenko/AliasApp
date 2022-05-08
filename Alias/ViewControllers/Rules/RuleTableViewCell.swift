@@ -11,12 +11,12 @@ class RuleTableViewCell: UITableViewCell {
 
     static let identifier = "RuleTableViewCell"
     
-    let imageRule: UIImageView = {
-        $0.contentMode = .scaleAspectFit
-        $0.tintColor = Constants.Colors.bottomButtonColor
+    let indexLabel: UILabel = {
+        $0.font = .systemFont(ofSize: 50)
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.textColor = Constants.Colors.bottomButtonColor
         return $0
-    }(UIImageView())
+    }(UILabel())
     
     let labelRule: UILabel = {
         $0.textColor = Constants.Colors.textColor
@@ -37,22 +37,21 @@ class RuleTableViewCell: UITableViewCell {
     
     func setupUI() {
         contentView.addSubview(labelRule)
-        contentView.addSubview(imageRule)
+        contentView.addSubview(indexLabel)
         NSLayoutConstraint.activate([
-            imageRule.widthAnchor.constraint(equalToConstant: 50),
-            imageRule.heightAnchor.constraint(equalToConstant: 50),
-            imageRule.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            imageRule.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            indexLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            indexLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            indexLabel.widthAnchor.constraint(equalToConstant: 50),
         
             labelRule.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            labelRule.leadingAnchor.constraint(equalTo: imageRule.trailingAnchor, constant: 10),
+            labelRule.leadingAnchor.constraint(equalTo: indexLabel.trailingAnchor, constant: 10),
             labelRule.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
         
             contentView.topAnchor.constraint(equalTo: labelRule.topAnchor, constant: -10),
             contentView.bottomAnchor.constraint(equalTo: labelRule.bottomAnchor, constant: 10),
             
-            contentView.topAnchor.constraint(lessThanOrEqualTo: imageRule.topAnchor, constant: -10),
-            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: imageRule.bottomAnchor, constant: 10)
+            contentView.topAnchor.constraint(lessThanOrEqualTo: indexLabel.topAnchor, constant: -10),
+            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: indexLabel.bottomAnchor, constant: 10)
         ])
         
     }

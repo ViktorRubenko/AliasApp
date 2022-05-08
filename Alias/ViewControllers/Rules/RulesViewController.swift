@@ -15,6 +15,8 @@ class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     weak var coordinator: RulesBaseCoordinator?
     
+    private let alphanumerics = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬", "⑭", "⑮", "⑯", "⑰", "⑱", "⑲", "⑳"]
+    
     private let rules = [
         RuleModel(text: "Задача каждого игрока - объяснить как можно больше слов товарищам по команде за ограниченное время."),
         RuleModel(text: "Во время объяснения нельзя использовать однокоренные слова, озвучивать перевод иностранных языков"),
@@ -86,7 +88,7 @@ class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RuleTableViewCell.identifier, for: indexPath) as! RuleTableViewCell
         cell.labelRule.text = rules[indexPath.row].text
-        cell.imageRule.image = UIImage(systemName: "i.circle")
+        cell.indexLabel.text = alphanumerics[indexPath.row]
         cell.backgroundColor = .clear
         return cell
     }
