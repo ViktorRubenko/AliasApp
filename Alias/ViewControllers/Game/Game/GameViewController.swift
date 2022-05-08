@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameViewController: InitialGameViewController {
-
+    private var player: AVAudioPlayer?
     private var jokeService: JokeBaseService!
     
     private lazy var header: GameHeaderView = {
@@ -178,12 +179,32 @@ class GameViewController: InitialGameViewController {
         footer.skipValue = gameService.skippedWords
     }
     
+    private func playSound(success: Bool) {
+        guard let successURL = Bundle.main.url(forResource: "success", withExtension: "wav") else { return }
+        guard let failURL = Bundle.main.url(forResource: "fail", withExtension: "mp3") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            player = try AVAudioPlayer(contentsOf: success ? successURL : failURL)
+            
+            guard let player = player else { return }
+            
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
     @objc private func didTapGuessButton() {
+        playSound(success: true)
         gameService.guessedWord()
         updateUI()
     }
     
     @objc private func didTapSkipButton() {
+        playSound(success: false)
         gameService.skipWord()
         updateUI()
     }

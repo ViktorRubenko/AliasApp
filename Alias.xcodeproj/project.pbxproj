@@ -20,6 +20,8 @@
 		E378F4132823E8ED0067342A /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378F4122823E8ED0067342A /* TimerView.swift */; };
 		E378F415282402950067342A /* GameFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378F414282402950067342A /* GameFooterView.swift */; };
 		E378F41728245E920067342A /* InitialGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E378F41628245E910067342A /* InitialGameViewController.swift */; };
+		E39422112827CEBB009A61FF /* success.wav in Resources */ = {isa = PBXBuildFile; fileRef = E394220F2827CEBB009A61FF /* success.wav */; };
+		E39422122827CEBB009A61FF /* fail.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E39422102827CEBB009A61FF /* fail.mp3 */; };
 		E3A05A1D2821C11600855DFD /* AliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A1C2821C11600855DFD /* AliasTests.swift */; };
 		E3A05A272821C94800855DFD /* CategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A262821C94800855DFD /* CategoriesData.swift */; };
 		E3A05A292821D93C00855DFD /* ActionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A05A282821D93C00855DFD /* ActionsData.swift */; };
@@ -76,6 +78,8 @@
 		E378F4122823E8ED0067342A /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		E378F414282402950067342A /* GameFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFooterView.swift; sourceTree = "<group>"; };
 		E378F41628245E910067342A /* InitialGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialGameViewController.swift; sourceTree = "<group>"; };
+		E394220F2827CEBB009A61FF /* success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success.wav; sourceTree = "<group>"; };
+		E39422102827CEBB009A61FF /* fail.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fail.mp3; sourceTree = "<group>"; };
 		E3A05A1A2821C11600855DFD /* AliasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AliasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A05A1C2821C11600855DFD /* AliasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasTests.swift; sourceTree = "<group>"; };
 		E3A05A262821C94800855DFD /* CategoriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesData.swift; sourceTree = "<group>"; };
@@ -257,6 +261,8 @@
 		E3B4D2F1281EB29E0042AF06 /* Alias */ = {
 			isa = PBXGroup;
 			children = (
+				E39422102827CEBB009A61FF /* fail.mp3 */,
+				E394220F2827CEBB009A61FF /* success.wav */,
 				E3B4D31C281EC5A70042AF06 /* Application */,
 				E36CA3D42825D41200498A71 /* DIContainer */,
 				E3A05A2D2821DBA500855DFD /* Coordinator */,
@@ -475,6 +481,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3B4D2FF281EB2A10042AF06 /* LaunchScreen.storyboard in Resources */,
+				E39422112827CEBB009A61FF /* success.wav in Resources */,
+				E39422122827CEBB009A61FF /* fail.mp3 in Resources */,
 				E3B4D2FC281EB2A10042AF06 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

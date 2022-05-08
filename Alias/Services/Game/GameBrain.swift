@@ -152,7 +152,6 @@ class GameBrain: GameBaseService {
             probabilityArray = [true, true, true, false]
         }
     }
-    
 }
 
 private extension GameBrain {
