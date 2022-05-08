@@ -64,10 +64,11 @@ class RulesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func createTable() {
-        self.tableView = UITableView(frame: view.bounds, style: .plain)
-        self.tableView.register(RuleTableViewCell.self, forCellReuseIdentifier: RuleTableViewCell.identifier)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.register(RuleTableViewCell.self, forCellReuseIdentifier: RuleTableViewCell.identifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.alwaysBounceVertical = false
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false

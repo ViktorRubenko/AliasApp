@@ -51,7 +51,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         view.backgroundColor = Constants.Colors.mainBackgroundColor
         
         view.addSubview(tableView)
-        
+        tableView.alwaysBounceVertical = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
