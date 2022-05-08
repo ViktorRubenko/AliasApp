@@ -70,6 +70,7 @@ class NextRoundViewController: InitialGameViewController {
             innerStackView.distribution = .equalCentering
             let teamLabel = componentsFactory.roundTeamListLabel()
             let teamScoreLabel = componentsFactory.roundTeamScoreListLabel()
+            teamScoreLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
             teamLabel.text = "\($0.name):"
             teamScoreLabel.text = "\($0.score)"
             innerStackView.addArrangedSubview(teamLabel)
