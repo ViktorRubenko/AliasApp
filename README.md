@@ -21,3 +21,6 @@ $ cd .../AliasApp/
 $ pod install
 ```
 ---
+<img width="180" alt="Screenshot 2022-05-08 at 11 57 12" src="https://user-images.githubusercontent.com/16288991/167289551-e625833d-fd2e-4b22-bebe-8f76391dec70.png"><img width="180" alt="Screenshot 2022-05-08 at 11 57 14" src="https://user-images.githubusercontent.com/16288991/167289549-79422089-2c29-4d35-acba-35163fb14910.png"><img width="180" alt="Screenshot 2022-05-08 at 11 57 17" src="https://user-images.githubusercontent.com/16288991/167289548-7dc453cb-c5c7-4740-a644-7de7330c69b8.png"><img width="180" alt="Screenshot 2022-05-08 at 11 57 20" src="https://user-images.githubusercontent.com/16288991/167289546-73fc2c6a-113e-4110-91c2-65e6ddf54ab0.png">
+
+<img width="180" alt="Screenshot 2022-05-08 at 11 57 30" src="https://user-images.githubusercontent.com/16288991/167289544-9e343856-61fd-44ba-86c3-4744a2f062da.png"><img width="180" alt="Screenshot 2022-05-08 at 11 57 38" src="https://user-images.githubusercontent.com/16288991/167289543-aa295102-a806-45c3-b24b-2e5f9367a619.png"><img width="180" alt="Screenshot 2022-05-08 at 11 58 19" src="https://user-images.githubusercontent.com/16288991/167289542-5b168094-97a6-4bd5-a674-eac821b1eac6.png"><img width="180" alt="Screenshot 2022-05-08 at 12 00 22" src="https://user-images.githubusercontent.com/16288991/167289540-43c3fe90-c98c-4510-b4a2-30bc12ea6ef1.png">
