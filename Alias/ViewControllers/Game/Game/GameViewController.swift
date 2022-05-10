@@ -226,6 +226,8 @@ extension GameViewController: GameServiceDelegate {
     }
     
     func teamRoundDidEnd(gameService: GameBaseService) {
+        guessButton.isEnabled = false
+        skipButton.isEnabled = false
         dismiss(animated: true, completion: nil)
         jokeService.getJoke { [weak self] result in
             switch result {
